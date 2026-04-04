@@ -1,12 +1,12 @@
 ---
 title: "Beginner: Fundamentals of R"
-subtitle: "2.0 Data Structures"
+subtitle: "Data Structures"
 author: "Prepared By Clinton Moshe Mwachia"
 date: "`r Sys.Date()`"
 output: learnr::tutorial
 runtime: shiny_prerendered
-description: "Learn R data structures interactively with exercises and instant feedback"
-----------------------------------------------------------------------------------------
+tutorial: true
+---
 
 ```{r setup, include=FALSE}
 library(learnr)
@@ -45,22 +45,16 @@ vec
 
 Create a vector called `animals` with 5 animals.
 
-```{r exercise=TRUE}
+```{r exercise1, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r exercise1-solution}
 animals <- c("Lion","Elephant","Buffalo","Leopard","Rhino")
 ```
 
-```{r grade}
-if (!exists("animals")) {
-  fail("❌ Create a variable called animals")
-} else if (length(animals) != 5) {
-  fail("❌ It should contain 5 animals")
-} else {
-  pass("✅ Good job!")
-}
+```{r exercise1-check}
+grade_code("CORRECT","INCORRECT")
 ```
 
 ---
@@ -69,15 +63,17 @@ if (!exists("animals")) {
 
 Find the length of `animals`.
 
-```{r exercise=TRUE}
+```{r exercise2, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r exercise2-solution2}
+animals <- c("Lion","Elephant","Buffalo","Leopard","Rhino")
+
 length(animals)
 ```
 
-```{r grade}
+```{r exercise2-check}
 grade_code({
   length(animals)
 })
@@ -89,20 +85,20 @@ grade_code({
 
 Extract the 1st, 3rd and 5th animals.
 
-```{r exercise=TRUE}
+```{r exercise3, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r solution3}
 animals[c(1,3,5)]
 ```
 
-```{r grade}
-grade_result(
-  pass_if = length(.result) == 3,
-  correct = "✅ Correct!",
-  fail = "❌ Use indexing like c(1,3,5)"
-)
+```{r grade3}
+grade_this({
+  animals[c(1,3,5)]
+},
+pass_if_equal(c("Lion","Buffalo","Rhino"),
+              message = "✅ Correct!"))
 ```
 
 ---
@@ -122,15 +118,15 @@ my_list
 
 Create a list `my_list` using `animals`.
 
-```{r exercise=TRUE}
+```{r exercise4, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r solution4}
 my_list <- list(animals)
 ```
 
-```{r grade}
+```{r grade4}
 if (!exists("my_list")) {
   fail("❌ Create my_list")
 } else {
@@ -155,15 +151,15 @@ A
 
 Find dimensions of matrix `A`.
 
-```{r exercise=TRUE}
+```{r exercise5, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r solution5}
 dim(A)
 ```
 
-```{r grade}
+```{r grade5}
 grade_code({
   dim(A)
 })
@@ -175,20 +171,20 @@ grade_code({
 
 Compute A + A
 
-```{r exercise=TRUE}
+```{r exercise6, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r solution6}
 A + A
 ```
 
-```{r grade}
-grade_result(
-  pass_if = all(.result == (A + A)),
-  correct = "✅ Correct!",
-  fail = "❌ Add matrix A to itself"
-)
+```{r grade6}
+grade_this({
+  A + A
+},
+pass_if_equal(A + A,
+              message = "✅ Correct! You successfully added matrix A to itself."))
 ```
 
 ---
@@ -208,15 +204,15 @@ df
 
 Get summary of df
 
-```{r exercise=TRUE}
+```{r exercise7, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r solution7}
 summary(df)
 ```
 
-```{r grade}
+```{r grade7}
 grade_code({
   summary(df)
 })
@@ -228,15 +224,15 @@ grade_code({
 
 Add a new column called `two`
 
-```{r exercise=TRUE}
+```{r exercise8, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r solution8}
 df$two <- c(1,3,5,7)
 ```
 
-```{r grade}
+```{r grade8}
 if (!"two" %in% colnames(df)) {
   fail("❌ Add column 'two'")
 } else {
@@ -277,11 +273,11 @@ Create:
 
 Then return length of list
 
-```{r exercise=TRUE}
+```{r exercise9, exercise=TRUE}
 # your code here
 ```
 
-```{r solution}
+```{r solution9}
 animals <- c("Lion","Elephant","Buffalo","Leopard","Rhino")
 marks <- c(70,80,90,85,60)
 
@@ -290,7 +286,7 @@ my_list <- list(animals, marks)
 length(my_list)
 ```
 
-```{r grade}
+```{r grade9}
 if (!exists("my_list")) {
   fail("❌ Create my_list")
 } else if (length(my_list) != 2) {
