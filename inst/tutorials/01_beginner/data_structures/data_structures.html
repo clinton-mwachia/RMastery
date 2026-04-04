@@ -12,8 +12,8 @@
 
 <meta name="date" content="2026-04-05" />
 
-<meta name="progressive" content="false" />
-<meta name="allow-skip" content="false" />
+<meta name="progressive" content="true" />
+<meta name="allow-skip" content="true" />
 <meta name="learnr-version-prerender" content="0.11.6.9000" />
 
 <title>Beginner: Fundamentals of R</title>
@@ -111,8 +111,8 @@ if (window.hljs) {
 
 <article class="topics" id="learnr-tutorial-content">
 
-<div id="section-introduction" class="section level1">
-<h1>👋 Introduction</h1>
+<div id="section-introduction" class="section level2">
+<h2>👋 Introduction</h2>
 <p>Data structures define how data is stored and organized in R.</p>
 <p>In this lesson, you will learn:</p>
 <ul>
@@ -124,15 +124,15 @@ if (window.hljs) {
 </ul>
 <hr />
 </div>
-<div id="section-vectors" class="section level1">
-<h1>🔢 VECTORS</h1>
+<div id="section-vectors" class="section level2">
+<h2>🔢 VECTORS</h2>
 <p>A vector stores elements of the same type.</p>
 <pre class="r"><code>vec &lt;- c(1,2,3,4)
 vec</code></pre>
 <pre><code>## [1] 1 2 3 4</code></pre>
 <hr />
-<div id="section-exercise-1-create-a-vector" class="section level2">
-<h2>🧠 Exercise 1: Create a Vector</h2>
+<div id="section-exercise-1-create-a-vector" class="section level3">
+<h3>🧠 Exercise 1: Create a Vector</h3>
 <p>Create a vector called <code>animals</code> with 5 animals.</p>
 <div class="tutorial-exercise" data-label="exercise1"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -147,8 +147,8 @@ data-lines="0" data-pipe="|&gt;">
 </div>
 <hr />
 </div>
-<div id="section-exercise-2-vector-length" class="section level2">
-<h2>🧠 Exercise 2: Vector Length</h2>
+<div id="section-exercise-2-vector-length" class="section level3">
+<h3>🧠 Exercise 2: Vector Length</h3>
 <p>Find the length of <code>animals</code>.</p>
 <div class="tutorial-exercise" data-label="exercise2"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -165,8 +165,8 @@ length(animals)</code></pre>
 </div>
 <hr />
 </div>
-<div id="section-exercise-3-indexing" class="section level2">
-<h2>🧠 Exercise 3: Indexing</h2>
+<div id="section-exercise-3-indexing" class="section level3">
+<h3>🧠 Exercise 3: Indexing</h3>
 <p>Extract the 1st, 3rd and 5th animals.</p>
 <div class="tutorial-exercise" data-label="exercise3"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -197,13 +197,13 @@ pass_if_equal(c(&quot;Lion&quot;,&quot;Buffalo&quot;,&quot;Rhino&quot;),
 ##     maybe_code_feedback &lt;- identical(engine, &quot;r&quot;) &amp;&amp; maybe_code_feedback
 ##     with_maybe_code_feedback(maybe_code_feedback, eval_gradethis(do_grade_this()))
 ## }
-## &lt;bytecode: 0x000001a9ae31fbd0&gt;
-## &lt;environment: 0x000001a9ae3139a0&gt;</code></pre>
+## &lt;bytecode: 0x000001bf83323460&gt;
+## &lt;environment: 0x000001bf83311b28&gt;</code></pre>
 <hr />
 </div>
 </div>
-<div id="section-lists" class="section level1">
-<h1>📋 LISTS</h1>
+<div id="section-lists" class="section level2">
+<h2>📋 LISTS</h2>
 <p>Lists can store different data types.</p>
 <pre class="r"><code>my_list &lt;- list(10, TRUE, &quot;R&quot;)
 my_list</code></pre>
@@ -216,8 +216,8 @@ my_list</code></pre>
 ## [[3]]
 ## [1] &quot;R&quot;</code></pre>
 <hr />
-<div id="section-exercise-4-create-a-list" class="section level2">
-<h2>🧠 Exercise 4: Create a List</h2>
+<div id="section-exercise-4-create-a-list" class="section level3">
+<h3>🧠 Exercise 4: Create a List</h3>
 <p>Create a list <code>my_list</code> using <code>animals</code>.</p>
 <div class="tutorial-exercise" data-label="exercise4"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -239,8 +239,8 @@ data-lines="0" data-pipe="|&gt;">
 <hr />
 </div>
 </div>
-<div id="section-matrices" class="section level1">
-<h1>🔢 MATRICES</h1>
+<div id="section-matrices" class="section level2">
+<h2>🔢 MATRICES</h2>
 <p>Matrices are 2D structures.</p>
 <pre class="r"><code>A &lt;- matrix(c(1,2,3,4,5,6), nrow = 2)
 A</code></pre>
@@ -248,8 +248,8 @@ A</code></pre>
 ## [1,]    1    3    5
 ## [2,]    2    4    6</code></pre>
 <hr />
-<div id="section-exercise-5-matrix-dimensions" class="section level2">
-<h2>🧠 Exercise 5: Matrix Dimensions</h2>
+<div id="section-exercise-5-matrix-dimensions" class="section level3">
+<h3>🧠 Exercise 5: Matrix Dimensions</h3>
 <p>Find dimensions of matrix <code>A</code>.</p>
 <div class="tutorial-exercise" data-label="exercise5"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -297,12 +297,12 @@ data-lines="0" data-pipe="|&gt;">
 ##         .user_code = user_code)
 ##     legacy_graded(correct = FALSE, message = message)
 ## }
-## &lt;bytecode: 0x000001a9b3361698&gt;
-## &lt;environment: 0x000001a9b335a428&gt;</code></pre>
+## &lt;bytecode: 0x000001bf883065b8&gt;
+## &lt;environment: 0x000001bf88325348&gt;</code></pre>
 <hr />
 </div>
-<div id="section-exercise-6-matrix-addition" class="section level2">
-<h2>🧠 Exercise 6: Matrix Addition</h2>
+<div id="section-exercise-6-matrix-addition" class="section level3">
+<h3>🧠 Exercise 6: Matrix Addition</h3>
 <p>Compute A + A</p>
 <div class="tutorial-exercise" data-label="exercise6"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -333,13 +333,13 @@ pass_if_equal(A + A,
 ##     maybe_code_feedback &lt;- identical(engine, &quot;r&quot;) &amp;&amp; maybe_code_feedback
 ##     with_maybe_code_feedback(maybe_code_feedback, eval_gradethis(do_grade_this()))
 ## }
-## &lt;bytecode: 0x000001a9ae31fbd0&gt;
-## &lt;environment: 0x000001a9b427aaf0&gt;</code></pre>
+## &lt;bytecode: 0x000001bf83323460&gt;
+## &lt;environment: 0x000001bf89235a10&gt;</code></pre>
 <hr />
 </div>
 </div>
-<div id="section-data-frames" class="section level1">
-<h1>📊 DATA FRAMES</h1>
+<div id="section-data-frames" class="section level2">
+<h2>📊 DATA FRAMES</h2>
 <p>Data frames store tabular data.</p>
 <pre class="r"><code>df &lt;- data.frame(one=c(10.5,11,23,4))
 df</code></pre>
@@ -349,8 +349,8 @@ df</code></pre>
   </script>
 </div>
 <hr />
-<div id="section-exercise-7-summary-stats" class="section level2">
-<h2>🧠 Exercise 7: Summary Stats</h2>
+<div id="section-exercise-7-summary-stats" class="section level3">
+<h3>🧠 Exercise 7: Summary Stats</h3>
 <p>Get summary of df</p>
 <div class="tutorial-exercise" data-label="exercise7"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -398,12 +398,12 @@ data-lines="0" data-pipe="|&gt;">
 ##         .user_code = user_code)
 ##     legacy_graded(correct = FALSE, message = message)
 ## }
-## &lt;bytecode: 0x000001a9b3361698&gt;
-## &lt;environment: 0x000001a9b10359d8&gt;</code></pre>
+## &lt;bytecode: 0x000001bf883065b8&gt;
+## &lt;environment: 0x000001bf85fade70&gt;</code></pre>
 <hr />
 </div>
-<div id="section-exercise-8-add-column" class="section level2">
-<h2>🧠 Exercise 8: Add Column</h2>
+<div id="section-exercise-8-add-column" class="section level3">
+<h3>🧠 Exercise 8: Add Column</h3>
 <p>Add a new column called <code>two</code></p>
 <div class="tutorial-exercise" data-label="exercise8"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -425,8 +425,9 @@ data-lines="0" data-pipe="|&gt;">
 <hr />
 </div>
 </div>
-<div id="section-bonus" class="section level1">
-<h1>🧠 BONUS</h1>
+<div id="section-bonus" class="section level2">
+<h2>🧠 BONUS</h2>
+</div>
 <div id="section-comments" class="section level2">
 <h2>Comments</h2>
 <pre class="r"><code># This is a comment</code></pre>
@@ -438,11 +439,10 @@ data-lines="0" data-pipe="|&gt;">
 y = 20</code></pre>
 <hr />
 </div>
-</div>
-<div id="section-final-challenge-assignment" class="section level1">
-<h1>🏁 FINAL CHALLENGE (Assignment)</h1>
-<div id="section-exercise-9-full-task" class="section level2">
-<h2>🧠 Exercise 9: Full Task</h2>
+<div id="section-final-challenge-assignment" class="section level2">
+<h2>🏁 FINAL CHALLENGE (Assignment)</h2>
+<div id="section-exercise-9-full-task" class="section level3">
+<h3>🧠 Exercise 9: Full Task</h3>
 <p>Create:</p>
 <ul>
 <li>animals vector</li>
@@ -477,8 +477,8 @@ length(my_list)</code></pre>
 <hr />
 </div>
 </div>
-<div id="section-summary" class="section level1">
-<h1>🎯 Summary</h1>
+<div id="section-summary" class="section level2">
+<h2>🎯 Summary</h2>
 <p>You learned:</p>
 <ul>
 <li>Vectors</li>
@@ -488,11 +488,7 @@ length(my_list)</code></pre>
 <li>Basic operations</li>
 </ul>
 <hr />
-</div>
-<div id="section-next-lesson" class="section level1">
-<h1>🚀 Next Lesson</h1>
-<p>👉 Continue to: <strong>Data Structures Assignment / Advanced
-Practice</strong> 
+<p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 library(gradethis)

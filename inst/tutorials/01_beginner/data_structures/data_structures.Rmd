@@ -3,7 +3,10 @@ title: "Beginner: Fundamentals of R"
 subtitle: "Data Structures"
 author: "Prepared By Clinton Moshe Mwachia"
 date: "`r Sys.Date()`"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
 runtime: shiny_prerendered
 tutorial: true
 ---
@@ -16,7 +19,7 @@ gradethis::gradethis_setup()
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 👋 Introduction
+## 👋 Introduction
 
 Data structures define how data is stored and organized in R.
 
@@ -30,7 +33,7 @@ In this lesson, you will learn:
 
 ---
 
-# 🔢 VECTORS
+## 🔢 VECTORS
 
 A vector stores elements of the same type.
 
@@ -41,7 +44,7 @@ vec
 
 ---
 
-## 🧠 Exercise 1: Create a Vector
+### 🧠 Exercise 1: Create a Vector
 
 Create a vector called `animals` with 5 animals.
 
@@ -59,7 +62,7 @@ grade_code("CORRECT","INCORRECT")
 
 ---
 
-## 🧠 Exercise 2: Vector Length
+### 🧠 Exercise 2: Vector Length
 
 Find the length of `animals`.
 
@@ -79,7 +82,7 @@ grade_code()
 
 ---
 
-## 🧠 Exercise 3: Indexing
+### 🧠 Exercise 3: Indexing
 
 Extract the 1st, 3rd and 5th animals.
 
@@ -101,7 +104,7 @@ pass_if_equal(c("Lion","Buffalo","Rhino"),
 
 ---
 
-# 📋 LISTS
+## 📋 LISTS
 
 Lists can store different data types.
 
@@ -112,7 +115,7 @@ my_list
 
 ---
 
-## 🧠 Exercise 4: Create a List
+### 🧠 Exercise 4: Create a List
 
 Create a list `my_list` using `animals`.
 
@@ -134,7 +137,7 @@ if (!exists("my_list")) {
 
 ---
 
-# 🔢 MATRICES
+## 🔢 MATRICES
 
 Matrices are 2D structures.
 
@@ -145,7 +148,7 @@ A
 
 ---
 
-## 🧠 Exercise 5: Matrix Dimensions
+### 🧠 Exercise 5: Matrix Dimensions
 
 Find dimensions of matrix `A`.
 
@@ -165,7 +168,7 @@ grade_code({
 
 ---
 
-## 🧠 Exercise 6: Matrix Addition
+### 🧠 Exercise 6: Matrix Addition
 
 Compute A + A
 
@@ -187,7 +190,7 @@ pass_if_equal(A + A,
 
 ---
 
-# 📊 DATA FRAMES
+## 📊 DATA FRAMES
 
 Data frames store tabular data.
 
@@ -198,7 +201,7 @@ df
 
 ---
 
-## 🧠 Exercise 7: Summary Stats
+### 🧠 Exercise 7: Summary Stats
 
 Get summary of df
 
@@ -218,7 +221,7 @@ grade_code({
 
 ---
 
-## 🧠 Exercise 8: Add Column
+### 🧠 Exercise 8: Add Column
 
 Add a new column called `two`
 
@@ -240,7 +243,7 @@ if (!"two" %in% colnames(df)) {
 
 ---
 
-# 🧠 BONUS
+## 🧠 BONUS
 
 ## Comments
 
@@ -259,9 +262,9 @@ y = 20
 
 ---
 
-# 🏁 FINAL CHALLENGE (Assignment)
+## 🏁 FINAL CHALLENGE (Assignment)
 
-## 🧠 Exercise 9: Full Task
+### 🧠 Exercise 9: Full Task
 
 Create:
 
@@ -296,7 +299,7 @@ if (!exists("my_list")) {
 
 ---
 
-# 🎯 Summary
+## 🎯 Summary
 
 You learned:
 
@@ -307,7 +310,3 @@ You learned:
 * Basic operations
 
 ---
-
-# 🚀 Next Lesson
-
-👉 Continue to: **Data Structures Assignment / Advanced Practice**
