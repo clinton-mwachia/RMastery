@@ -1,0 +1,26 @@
+Package: RMastery
+Title: Interactive R Learning Platform with Tutorials and Exercises
+Version: 0.1.0
+Authors@R: 
+    person("Clinton", "Moshe", email="clintonmwachia9@gmail.com", role=c("aut", "cre"))
+Description: 
+    RMastery is an interactive R learning platform designed to teach R 
+    programming from beginner to advanced levels. It provides hands-on 
+    tutorials, exercises, and instant feedback.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 4.0)
+Imports: 
+    learnr,
+    gradethis,
+    swirl,
+    utils
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 7.3.3
+URL: https://github.com/clinton-mwachia/RMastery
+BugReports: https://github.com/clinton-mwachia/RMastery/issues
