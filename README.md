@@ -99,17 +99,13 @@ You write code → get feedback instantly 🎯
 
 ---
 
-## 🖥 CLI Learning (swirl)
-
-Prefer learning in the terminal?
+## How to Run A Lesson
 
 ```r
-library(swirl)
-swirl()
+devtools::load_all()
+devtools::document()
+learnr::run_tutorial("F:/R/RMastery/inst/tutorials/data_structures/data_structures.Rmd")
 ```
-
-Select **RMastery** course and start learning.
-
 ---
 
 ## 📁 Project Structure
@@ -119,9 +115,9 @@ RMastery/
 ├── R/
 ├── inst/
 │   └── tutorials/
-│       ├── 01_beginner/
-│       ├── 02_intermediate/
-│       └── 03_advanced/
+│       ├── data_structures/
+│       ├── introduction/
+│       └── machine_learning/
 ├── man/
 ├── DESCRIPTION
 └── README.md
