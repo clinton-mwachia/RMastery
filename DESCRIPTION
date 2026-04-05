@@ -1,4 +1,5 @@
 Package: RMastery
+Type: Package
 Title: Interactive R Learning Platform with Tutorials and Exercises
 Version: 0.1.0
 Authors@R: 
