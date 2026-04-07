@@ -243,7 +243,34 @@ for (animal in animals) {
 
 The break statement is used to break the loop when a certain condition is met. The code below will break from the loop if the animal is Leopard.
 
+```{r}
+# define a list
+animals = list("Elephant", "Lion", "Leopard", "Rhino", "Cheetah")
+
+# print each animal
+for (animal in animals) {
+  cat(paste0(animal, " "))
+  
+  if(animal == "Leopard"){
+    break
+  }
+}
+```
+
 ## Next statement
 
 The next statement is used to skip an item if a certain condition in met. When the condition being tested evaluates to true, the iteration will move to the next item. The code chunks below will illustrate it's use cases.
+
+```{r}
+# define a list
+animals = list("Elephant", "Lion", "Leopard", "Rhino", "Cheetah")
+
+# print each animal
+for (animal in animals) {
+   if(animal == "Leopard"){
+    next
+   }
+   cat(paste0(animal, " "))
+}
+```
 
