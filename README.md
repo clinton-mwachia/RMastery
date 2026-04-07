@@ -13,7 +13,6 @@ It helps you learn R step-by-step using **hands-on tutorials, exercises, and ins
 * 💻 **Hands-on Exercises** – Practice as you learn
 * ⚡ **Instant Feedback** – Get real-time grading with explanations
 * 🧠 **Structured Curriculum** – Beginner → Intermediate → Advanced
-* 🖥 **CLI Support** – Learn in the terminal using swirl
 * 📊 **Real-world Examples** – Work with practical datasets
 
 ---
@@ -22,7 +21,6 @@ It helps you learn R step-by-step using **hands-on tutorials, exercises, and ins
 
 * `learnr` – Interactive tutorials
 * `gradethis` – Automatic grading and feedback
-* `swirl` – Command-line learning interface
 
 ---
 
@@ -34,17 +32,6 @@ Install from GitHub:
 install.packages("devtools")
 devtools::install_github("clinton-mwachia/RMastery")
 ```
-
----
-
-## 📦 Local Installation
-
-Install After updating lesson:
-
-```r
-devtools::install()
-devtools::load_all()
-devtools::document()
 ```
 
 ## 🚀 Getting Started
@@ -54,15 +41,12 @@ Launch your first lesson:
 ```r
 library(RMastery)
 
-launch_vectors()
-```
-
-Or browse available tutorials:
-
-```r
+# browse available tutorials
 learnr::available_tutorials("RMastery")
-```
 
+# lauch a given lesson
+learnr::run_tutorial(name = "introduction", package = "RMastery")
+```
 ---
 
 ## 📚 Course Structure
@@ -109,7 +93,7 @@ You write code → get feedback instantly 🎯
 
 ---
 
-## How to Run A Lesson
+## How to Run A Lesson Locally during dev
 
 ```r
 devtools::load_all()
