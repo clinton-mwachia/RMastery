@@ -37,6 +37,16 @@ devtools::install_github("clinton-mwachia/RMastery")
 
 ---
 
+## 📦 Local Installation
+
+Install After updating lesson:
+
+```r
+devtools::install()
+devtools::load_all()
+devtools::document()
+```
+
 ## 🚀 Getting Started
 
 Launch your first lesson:
