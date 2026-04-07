@@ -274,3 +274,145 @@ for (animal in animals) {
 }
 ```
 
+---
+
+### Exercise 1
+
+Create two variables,`x = 10 and y = 20`.
+
+Create a new variable, z, and assign it to the result of y > x. Print the value of z using the `cat()` function
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+x = 10
+y = 20
+z = y > x
+
+cat(z)
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Create a data frame, **Perf** with the columns below;
+  *Student = c("James", "Peter", "Andrew", "Mercy",  "Magdalene")*
+  *Math = c(89,79,50,40,98)*
+  
+Create a new column, **Grade**, containing the grades of each student based on the following grading system.
+
+    0 - 30 - D
+    31 - 50 - C
+    51 - 70 - B
+    71 - 80 - B+
+    81 - 100 - A
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+perf = data.frame(
+  Student = c("James", "Peter", "Andrew", "Mercy",  "Magdalene"),
+  Math = c(89,79,50,40,98)
+)
+
+perf$Grade = ifelse(perf$Math > 80, "A",
+                    ifelse(perf$Math > 70, "B+",
+                           ifelse(perf$Math > 50, "B",
+                                  ifelse(perf$Math > 30, "C", "D"))))
+
+perf
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+Using the data frame above, Add a new column, **Pass**, containing a Boolean value on whether a student has passed or not. *The pass mark is 50*.
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+perf = data.frame(
+  Student = c("James", "Peter", "Andrew", "Mercy",  "Magdalene"),
+  Math = c(89,79,50,40,98)
+)
+
+perf$Grade = ifelse(perf$Math > 80, "A",
+                    ifelse(perf$Math > 70, "B+",
+                           ifelse(perf$Math > 50, "B",
+                                  ifelse(perf$Math > 30, "C", "D"))))
+
+perf$Pass = ifelse(perf$Math > 50, TRUE, FALSE)
+
+perf
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Create an empty vector, **vec**, of length 10.
+
+Print the contents of *vec*.
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+vec = vector(mode="numeric", length = 10)
+
+vec
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Create another vector, **vec2**, containing the data `1,2,3,4,5,6,7,8,9,10`.
+Using the appropriate conditional statements, fill up **vec** with twice the value of **vec2**.
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+vec = vector(mode="numeric", length = 10)
+
+vec2 = c(1,2,3,4,5,6,7,8,9,10)
+
+for (i in 1:length(vec2)) {
+  vec[i] = 2*i
+}
+
+vec
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---
