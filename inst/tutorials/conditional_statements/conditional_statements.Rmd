@@ -1,0 +1,249 @@
+---
+title: "Fundamentals of R"
+subtitle: "Conditional Statements"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Control Statements in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Conditional statements are used to  handle decisions in R. They are used to perform certain actions if a certain criteria is met. In this session, we will cover the following :- 
+
+    1. If statements.
+    2. If else statements.
+    3. Else if statements.
+    4. AND and OR.
+    5. For loop.
+    6. Break Statements.
+    7. Next statements.
+    
+    
+## If statements
+
+An if statement is only executed if the condition being tested evaluates to TRUE. The code chunks below will illustrate some of the use cases.
+
+```{r}
+num = 20
+
+if(num == 20){
+  cat(num)
+}
+```
+
+## Greater than
+
+```{r}
+# check if a number if greater than a given value and print it
+
+# lets define the variables
+num = 10
+
+# the if statement
+if(num > 10){
+  cat(num)
+}
+
+# since the num is not greater than 10 (evaluates to FALSE), the code is not
+# executed
+```
+
+## Equal to
+
+```{r}
+# check if num is equal to
+if(num == 10){
+  cat(num)
+}
+```
+
+## Not Equal to
+
+```{r}
+# check if num is not equal to
+if(num != 10){
+  cat(num)
+}
+```
+
+## Greater than or Equal to
+
+```{r}
+# check if num is greater than or equal to
+if(num >= 10){
+  cat(num)
+}
+```
+
+## Less than or Equal to
+
+```{r}
+# check if num is greater than or equal to
+if(num <= 10){
+  cat(num)
+}
+```
+
+## If Else Statements
+
+An if else statements is used to handle situations that are not handled by the if statement. For instance, in the if statement, if the num is not equal to 10, the code will not be executed, to solve this we will use the else statement to give the user feedback.
+
+Let use create a new variable, *name*, and use it to illustrate if else statements.
+
+```{r}
+# defining name
+name = "james bond"
+
+# let check if the name jane doe is equal to name
+if(name == "jane doe"){
+  cat(name)
+} else {
+  cat("name is not jane doe")
+}
+```
+
+Lets change the name from *jane doe* to *james bond*.
+
+```{r}
+if(name == "james bond"){
+  cat(name)
+} else {
+  cat("name is not jane doe")
+}
+```
+
+As seen above, if the if statement does not catch the condition, it is forwarded to the else condition. Lets try the same but with numbers.
+
+```{r}
+# declare num2
+num2 = 2
+
+# test if the number is greater than 2
+if(num2 > 2){
+  cat("number is greater than 2")
+} else {
+  cat("number is less than 2")
+}
+```
+
+## Else If Statements
+
+Else if statements helps one to handle multiple conditions before executing the else condition.
+
+The code chunk below illustrates how to make use of the else if statements, we will use the name variable.
+
+```{r}
+# check if the name is available and give access
+name = "james bond"
+
+if(name == "james bond"){
+  cat("name exists in the data base")
+} else if(name == "Clinton Bond"){
+  cat("name clinton exists")
+} else {
+  cat("name does not exists")
+}
+```
+
+In the code chunk above, condition 1 is met because the name is james bond.
+
+In the code chunk below, we change the name to clinton Bond, observe the results.
+
+```{r}
+# check if the name is available and give access
+name = "Clinton Bond"
+
+if(name == "james bond"){
+  cat("name exists in the data base")
+} else if(name == "Clinton Bond"){
+  cat("name clinton exists")
+} else {
+  cat("name does not exists")
+}
+```
+
+## AND operator
+
+```{r}
+# define the variables
+a = 5
+b = 7
+
+# check if both are greater than
+if(a > 4 & b > 5){
+  cat("both a and b are greater than")
+} else {
+  cat("both a and b are less than")
+}
+
+```
+
+## OR operator
+
+```{r}
+# check if any is greater than
+if(a > 5 | b > 5){
+  cat("atleast one greater than")
+} else {
+  cat("atleast one is less than")
+}
+```
+
+## For Loop
+
+A for loop is used to iterate over a given sequence and the perform given operations to individual items. The code chunks below illustrate some of the use cases.
+
+## Loop through a vector
+
+```{r}
+# define a vector
+x = c(1,2,3,4,5)
+
+# print each item of vector x
+for (i in x) {
+  cat(paste0(i, " ")) # to add spaces between the items
+}
+```
+
+What if you wanted to multiply the items by a given number? Proceed to the next chunk and find out how to do it or you can also think about first.
+
+```{r}
+# multiply by 2 and print each item of vector x 
+for (i in x) {
+  cat(paste0(i * 2, " ")) # to add spaces between the items
+}
+```
+
+## Loop through a list
+
+```{r}
+# define a list
+animals = list("Elephant", "Lion", "Leopard", "Rhino", "Cheetah")
+
+# print each animal
+for (animal in animals) {
+  cat(paste0(animal, " ")) # to add spaces between the items
+}
+```
+
+## Break Statement
+
+The break statement is used to break the loop when a certain condition is met. The code below will break from the loop if the animal is Leopard.
+
+## Next statement
+
+The next statement is used to skip an item if a certain condition in met. When the condition being tested evaluates to true, the iteration will move to the next item. The code chunks below will illustrate it's use cases.
+

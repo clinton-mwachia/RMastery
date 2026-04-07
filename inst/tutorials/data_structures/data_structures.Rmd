@@ -3,6 +3,7 @@ title: "Fundamentals of R"
 subtitle: "Data Structures"
 author: "Prepared By Clinton Moshe Mwachia"
 date: "`r Sys.Date()`"
+description: "Data structures in R"
 output: 
   learnr::tutorial:
     progressive: true
