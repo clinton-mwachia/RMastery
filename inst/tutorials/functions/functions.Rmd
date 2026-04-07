@@ -1,0 +1,148 @@
+---
+title: "Fundamentals of R"
+subtitle: "Functions"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Control Statements in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+A function in R is a block of code that performs certain tasks and can only run when it is called. Functions are normally created and stored into libraries. In this session, we will learn about the following: -
+
+      1. Built on functions.
+      2. User defined functions.
+      
+## Built in Functions
+
+These are functions that can be found in the default R work-space. They come with the R and RStudio ecosystem and can be accessed without installing any libraries. Some of the built functions in R are `mean`, `mode`,`median`, `sum` and many more, The code chunks below will show some of the built in functions.
+
+**Absolute Value**
+
+```{r}
+# get the absolute value of a number
+abs(-10)
+```
+
+**Sum Numbers**
+
+```{r}
+# sum of 10 numbers
+# initialize the sum
+total = 0 
+# loop through 10 numbers and sum them
+for (i in 1:10) {
+  total = total + i
+}
+
+# print the total
+cat(total)
+```
+
+**Logarithm Of a Number**
+
+```{r}
+# Logarithm of a number
+log(2)
+```
+
+**Split a String by space**
+
+```{r}
+# Split a string by space
+
+# define the string
+name = "James clinton"
+
+# split the string by space
+strsplit(name, " ")
+```
+
+**Calculate Average of Numbers**
+
+```{r}
+# the mean of 2 numbers
+mean(c(1,3))
+```
+
+## User Defined Functions
+
+These a functions created by the user to perform specific tasks. They are mainly created so they can be re-used.
+
+**Function with arguments**
+
+```{r}
+# defining the function
+Hello <- function(name){
+  cat(paste0("Hello, ", name))
+}
+
+# test case 1
+Hello("clinton")
+
+# test case 2
+Hello("James Peter")
+```
+
+**Function without arguments**
+
+```{r}
+# defining the function
+Hello2 <- function(){
+  cat("Hello, Clinton")
+}
+
+# test case 1
+Hello2()
+```
+
+**Function with default arguments**
+
+```{r}
+## Function with default arguments
+# defining the function
+Hello3 <- function(name = "Clinton Moshe"){
+  cat(paste0("\nHello, ", name))
+}
+
+# test case 1
+Hello3()
+
+# test case 2
+Hello3("John Doe")
+```
+
+*NOTE: IF YOU WANT THE FUNCTION TO RETURN A VALUE,USE THE RETURN STATEMENT AS ILLUSTRATED BELOW*
+
+**The function will return the sum of 20 numbers.**
+
+```{r}
+# defining the number
+sum_20 <- function(){
+  # initialize the total
+  tot = 0
+  # loop through 20 numbers and sum
+  for (i in 1:20) {
+    tot = tot + i
+  }
+  # return the value
+  return(tot)
+}
+
+# calling the function
+sum_20()
+```
+
