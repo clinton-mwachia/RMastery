@@ -7,3 +7,5 @@ learnr::run_tutorial("F:/R/RMastery/inst/tutorials/conditional_statements/condit
 learnr::run_tutorial("F:/R/RMastery/inst/tutorials/functions/functions.Rmd")
 
 learnr::run_tutorial("F:/R/RMastery/inst/tutorials/r_operations/r_operations.Rmd")
+
+learnr::run_tutorial("F:/R/RMastery/inst/tutorials/data/data.Rmd")
