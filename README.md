@@ -51,45 +51,18 @@ learnr::run_tutorial(name = "introduction", package = "RMastery")
 
 ## 📚 Course Structure
 
-### 🟢 Beginner
-
 * Variables & Data Types
 * Vectors
 * Data Frames
-* Basic Visualization
-
-### 🟡 Intermediate
-
-* Data Manipulation (`dplyr`)
-* Visualization (`ggplot2`)
-* Functions & Control Flow
-* Data Cleaning
-
-### 🔴 Advanced
-
-* Machine Learning
-* APIs & Data Collection
-* Shiny Applications
-* Package Development
 
 ---
-
-## 🧪 Example Lesson
 
 Each lesson includes:
 
 * 📖 Explanation
 * 💻 Interactive coding
-* ✅ Instant grading
-* 💡 Smart hints
-
-Example exercise:
-
-```r
-# Create a vector from 1 to 5
-```
-
-You write code → get feedback instantly 🎯
+* ✅ Instant geedbackm
+*    hints
 
 ---
 
