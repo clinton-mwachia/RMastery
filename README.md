@@ -29,8 +29,8 @@ It helps you learn R step-by-step using **hands-on tutorials, exercises, and ins
 Install from GitHub:
 
 ```r
-install.packages("devtools")
-devtools::install_github("clinton-mwachia/RMastery")
+install.packages("pak")
+pak::pak("clinton-mwachia/RMastery")
 ```
 ```
 
