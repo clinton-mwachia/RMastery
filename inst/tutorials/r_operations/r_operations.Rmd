@@ -1,0 +1,185 @@
+---
+title: "Fundamentals of R"
+subtitle: "R Operations"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Control Statements in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Operators are symbols or characters used to perform various mathematical, logical, and relational operations. 
+
+These operators are used to perform calculations, compare values, combine data, and manipulate variables in R. 
+
+Understanding the different types of operators in R is crucial for effective data analysis and programming in R. 
+
+In this context, this note provides an overview of some of the most commonly used operators in R. They include:- 
+
+    1. Assignment operators.
+    2. Arithmetic operators.
+    3. Comparison operators.
+    4. Logical operators.
+    5. concatenation operators. 
+    
+## Arithmetic operators
+
+These operators are used to perform mathematical operations such as addition, subtraction, multiplication, exponentiation, and modulus. These operations are illustrated below.
+
+**Addition**
+
+```{r}
+# adding two numbers
+2 + 100
+```
+
+**Subtraction**
+
+```{r}
+# subtracting two numbers
+2000 - 100
+```
+
+**Multiplication**
+
+```{r}
+# multiplying two numbers
+44 * 90
+```
+
+**Division**
+
+```{r}
+# dividing two numbers
+1000 / 20
+```
+
+**Exponentiation**
+
+```{r}
+# exponentiation
+2^3
+```
+
+**Modulus**
+
+```{r}
+# modulus
+100 %% 2
+# remainder?
+100 %% 3
+```
+
+## Assignment operators
+
+The assignment operator is used to assign values to variables. You can use either the equal sign or the leftward arrow to assign a value to a variable, both scenarios are illustrated below.
+
+**Using An Equal Sign** 
+
+```{r}
+# using an equal sign
+x = 10
+```
+
+THE VALUE OF X IS `r x`
+
+**Using A leftward arrow** 
+
+```{r}
+# using an equal sign
+x <- 20
+```
+
+THE NEW VALUE OF X IS `r x`
+
+## Comparison operators
+
+These operators are used to compare values. They will always return a Boolean value.
+
+**Equal to**
+
+```{r}
+10 == 15
+```
+
+**Not Equal to**
+
+```{r}
+20 != 15
+```
+
+**Less Than or Equal to**
+
+```{r}
+2 <= 15
+```
+
+**Greater Than or Equal to**
+
+```{r}
+20 >= 15
+```
+
+**Less Than**
+
+```{r}
+100 < 150
+```
+
+**Greater Than**
+
+```{r}
+100 > 1020
+```
+
+## Logical operators
+
+Logical operators are used to perform logical operations.
+
+**Logical AND Operator**
+
+```{r}
+TRUE & TRUE
+
+TRUE & FALSE
+```
+
+**Logical OR Operator**
+
+```{r}
+TRUE | TRUE
+
+TRUE | FALSE
+```
+
+**Logical NOT Operator**
+
+```{r}
+!TRUE
+
+!(2==5)
+```
+
+## concatenation operators
+
+This operator is used to combine variables into a vector.
+
+```{r}
+y = c(1,2,3)
+
+y
+```
+
