@@ -5,3 +5,5 @@ learnr::run_tutorial("F:/R/RMastery/inst/tutorials/data_structures/data_structur
 learnr::run_tutorial("F:/R/RMastery/inst/tutorials/conditional_statements/conditional_statements.Rmd")
 
 learnr::run_tutorial("F:/R/RMastery/inst/tutorials/functions/functions.Rmd")
+
+learnr::run_tutorial("F:/R/RMastery/inst/tutorials/r_operations/r_operations.Rmd")
