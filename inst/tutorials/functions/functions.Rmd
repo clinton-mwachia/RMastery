@@ -146,3 +146,170 @@ sum_20 <- function(){
 sum_20()
 ```
 
+---
+
+### Exercise 1
+
+Create a function that will print the first name, last name and age of a person.
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+printDetails = function(fname, lname, age){
+  cat(c(fname, lname, age))
+}
+
+printDetails("Clinton","Moshe",20)
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Recreate the function from *Exercise 1* and supply default values for the first name, last name and the age. Print the default values to the console.
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+printDetails = function(fname="fname", lname="lname", age=10){
+  cat(c(fname, lname, age))
+}
+
+printDetails()
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+Recreate the function from *Exercise 1* and supply default values for the first name, last name and the age. Print the default values to the console.
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+printDetails = function(fname="fname", lname="lname", age=10){
+  cat(c(fname, lname, age))
+}
+
+printDetails()
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Create a function, *sample_num*, that will sample 20 numbers from 100 Then calculate the mean of those numbers. 
+
+*(DO NOT USE THE BUILD IN MEAN FUNCTION)*
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+sample_num = function(){
+  # set a seed to generate the same nums every time
+  set.seed(100)
+  # sample 20 numbers
+  nums = sample(1:100, 20)
+  
+  # initialize the total
+  tot = 0
+  # loop through 20 numbers and sum
+  for (i in nums) {
+    tot = tot + i
+  }
+  
+  # calculate average
+  avg = tot / length(nums)
+  
+  cat(nums, "\n")
+  cat(paste0("Avg: ", avg))
+}
+
+sample_num()
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Write a function, *sum_n*, that will accept the number, *n*. The function should return the sum of those numbers.
+
+What is the sum of the first 20 numbers?
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+sum_n = function(n){
+  # initialize the total
+  tot = 0
+  # loop through n numbers and sum
+  for (i in 1:n) {
+    tot = tot + i
+  }
+  # return the value
+  return(tot)
+}
+
+sum_n(20)
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---
+
+### Exercise 6
+
+What is the sum of the first 100 numbers?
+
+```{r exercise6, exercise=TRUE}
+# your code here
+```
+
+```{r exercise6-solution}
+sum_n = function(n){
+  # initialize the total
+  tot = 0
+  # loop through n numbers and sum
+  for (i in 1:n) {
+    tot = tot + i
+  }
+  # return the value
+  return(tot)
+}
+
+sum_n(100)
+```
+
+```{r exercise6-check}
+grade_code()
+```
+
+---
