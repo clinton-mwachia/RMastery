@@ -183,3 +183,136 @@ y = c(1,2,3)
 y
 ```
 
+---
+
+### Exercise 1
+
+Create variable *x* with the data *apple, banana, orange* and *y* with the data *rape, pineapple, watermelon*.
+
+Use concatenation operator to combine variable *x* and *y*.
+
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+x <- c("apple", "banana", "orange")
+
+y <- c("grape", "pineapple", "watermelon")
+
+c(x,y)
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Write a function, *calculate_all* that accepts two numbers and performs the following operations:-
+
+    1. Adds the two numbers
+    2. Subtracts the second number from the first number
+    3. Multiplies the two numbers
+    4. Divides the first number by the second number
+
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+calculate_all = function(a, b){
+  results <- list(
+    Sum = a+b,
+    Substraction = a-b,
+    Multiplication = a*b,
+    Division = ifelse(b != 0, a/b, "Undefined")
+  )
+  
+  return(results)
+}
+
+calculate_all(10, 20)
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+Using the seq() function, create a vector of integers from 1 to 10. Using arithmetic operators, calculate the sum of the vector.
+
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+nums = seq(1,10,by=1)
+
+sum(nums)
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Create a variable called *age* with a value of 30. Using comparison operators, print "You are an adult" if age is greater than or equal to 18, and "You are not an adult" if age is less than 18.
+
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+age = 30
+
+if(age >= 18){
+  cat("You are an adult")
+} else {
+  cat("You are not an adult")
+}
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Using the `rep()` function, create a vector with 10 repetitions of the string "hello". Using the `toUpper()` function, convert the vector to all uppercase letters. Using the concatenation operator, add an exclamation mark to the end of each element in the vector. Print the resulting vector.
+
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+# create the vector
+vec = rep("hello", 10)
+
+# convert to upper case
+vecUppercase = toupper(vec)
+
+# add exclamation
+paste0(vecUppercase,"!")
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---
