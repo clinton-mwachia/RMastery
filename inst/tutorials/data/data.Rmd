@@ -206,3 +206,23 @@ head(data)
 # disconnect the connection
 RSQLite::dbDisconnect(con)
 ```
+
+---
+
+### Exercise 1
+
+Create a vector called `animals` with 5 animals.
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+animals <- c("Lion","Elephant","Buffalo","Leopard","Rhino")
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
