@@ -1,11 +1,22 @@
-learnr::run_tutorial("F:/R/RMastery/inst/tutorials/introduction/introduction.Rmd")
+#' Launch a specific lesson
+#' @param lesson Name of the lesson
+#' @export
+launch_lesson <- function(lesson = NULL) {
+  tutorials <- learnr::available_tutorials("RMastery")
 
-learnr::run_tutorial("F:/R/RMastery/inst/tutorials/data_structures/data_structures.Rmd")
+  if (nrow(tutorials) == 0) {
+    stop("No tutorials found. Check installation.")
+  }
 
-learnr::run_tutorial("F:/R/RMastery/inst/tutorials/conditional_statements/conditional_statements.Rmd")
+  if (is.null(lesson)) {
+    print("Available lessons:")
+    print(tutorials[, c("tutorial", "title")])
+    return(invisible(NULL))
+  }
 
-learnr::run_tutorial("F:/R/RMastery/inst/tutorials/functions/functions.Rmd")
+  if (!lesson %in% tutorials$tutorial) {
+    stop("Lesson not found.")
+  }
 
-learnr::run_tutorial("F:/R/RMastery/inst/tutorials/r_operations/r_operations.Rmd")
-
-learnr::run_tutorial("F:/R/RMastery/inst/tutorials/data/data.Rmd")
+  learnr::run_tutorial(lesson, package = "RMastery")
+}
