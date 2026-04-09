@@ -2,7 +2,7 @@
 title: "Fundamentals of R"
 subtitle: "Statistical Analysis"
 author: "Prepared By Clinton Moshe Mwachia"
-description: "Built in and external datasets in R"
+description: "Perform Statistical Analysis in R"
 date: "`r Sys.Date()`"
 output: 
   learnr::tutorial:

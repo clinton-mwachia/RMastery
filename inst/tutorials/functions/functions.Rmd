@@ -2,7 +2,7 @@
 title: "Fundamentals of R"
 subtitle: "Functions"
 author: "Prepared By Clinton Moshe Mwachia"
-description: "Control Statements in R"
+description: "Inbuilt and User defined Functions in R"
 date: "`r Sys.Date()`"
 output: 
   learnr::tutorial:

@@ -2,7 +2,7 @@
 title: "Fundamentals of R"
 subtitle: "R Operations"
 author: "Prepared By Clinton Moshe Mwachia"
-description: "Control Statements in R"
+description: "Perform Various Mathematical Operations in R"
 date: "`r Sys.Date()`"
 output: 
   learnr::tutorial:
