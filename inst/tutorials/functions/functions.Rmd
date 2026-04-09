@@ -148,6 +148,8 @@ sum_20()
 
 ---
 
+## Exercises
+
 ### Exercise 1
 
 Create a function that will print the first name, last name and age of a person.

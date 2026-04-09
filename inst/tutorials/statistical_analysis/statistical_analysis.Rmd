@@ -104,6 +104,8 @@ summary(vec)
 
 ---
 
+## Exercises
+
 ### Exercise 1
 
 Create a data frame named `df` with the variables `Student`, `Age`, `gender`, `maths`, `pass` and fill it with 20 records.

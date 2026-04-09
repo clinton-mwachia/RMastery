@@ -276,6 +276,8 @@ for (animal in animals) {
 
 ---
 
+## Exercises
+
 ### Exercise 1
 
 Create two variables,`x = 10 and y = 20`.

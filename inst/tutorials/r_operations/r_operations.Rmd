@@ -185,6 +185,8 @@ y
 
 ---
 
+## Exercises
+
 ### Exercise 1
 
 Create variable *x* with the data *apple, banana, orange* and *y* with the data *rape, pineapple, watermelon*.

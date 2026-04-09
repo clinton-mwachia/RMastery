@@ -54,6 +54,8 @@ vec
 
 ---
 
+## Exercises
+
 ### Exercise 1: Create a Vector
 
 Create a vector called `animals` with 5 animals.

@@ -209,6 +209,8 @@ RSQLite::dbDisconnect(con)
 
 ---
 
+## Exercises
+
 ### Exercise 1
 
 Load the **iris** dataset from the built-in datasets in R and assign it to a variable called **iris_data**. Display the first 5 rows of the dataset.
