@@ -69,9 +69,15 @@ Each lesson includes:
 ## How to Run A Lesson Locally during dev
 
 ```r
-devtools::load_all()
 devtools::document()
-learnr::run_tutorial("F:/R/RMastery/inst/tutorials/data_structures/data_structures.Rmd")
+
+devtools::install()
+
+# browse available tutorials
+learnr::available_tutorials("RMastery")
+
+# lauch a given lesson
+learnr::run_tutorial(name = "introduction", package = "RMastery")
 ```
 ---
 
