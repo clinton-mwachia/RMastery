@@ -211,17 +211,221 @@ RSQLite::dbDisconnect(con)
 
 ### Exercise 1
 
-Create a vector called `animals` with 5 animals.
+Load the **iris** dataset from the built-in datasets in R and assign it to a variable called **iris_data**. Display the first 5 rows of the dataset.
 
 ```{r exercise1, exercise=TRUE}
 # your code here
 ```
 
 ```{r exercise1-solution}
-animals <- c("Lion","Elephant","Buffalo","Leopard","Rhino")
+data("iris")
+
+iris_data = iris
+
+head(iris_data,5)
 ```
 
 ```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Create a 3x3 matrix named `mat1` with the following values:
+
+      1 2 3
+      4 5 6
+      7 8 9
+      
+Perform matrix multiplication of `mat1` with its transpose and assign the result to a new matrix called `mat2`. Display the contents of `mat2`.
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+mat1 = matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3)
+
+mat1Transpose = t(mat1)
+
+mat2 = mat1 * mat1Transpose
+
+mat2
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+
+### Exercise 3
+
+Create a data frame named `students` with the following columns: `Name`, `Age`, `Gender`, and `Grade`, Add at 10 rows of data to the data frame.
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+students <- data.frame(
+  Name = c("Alice", "Brian", "Catherine", "David", "Eva",
+           "Frank", "Grace", "Henry", "Irene", "John"),
+  
+  Age = c(20, 22, 19, 21, 23,
+          20, 22, 21, 19, 23),
+  
+  Gender = c("Female", "Male", "Female", "Male", "Female",
+             "Male", "Female", "Male", "Female", "Male"),
+  
+  Grade = c("A", "B", "A", "C", "B",
+            "A", "B", "C", "A", "B"),
+  
+  stringsAsFactors = FALSE
+)
+
+students
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Connect to an SQLite database named `database.db` and execute a query to insert all records from the `students` dataframe. 
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+students <- data.frame(
+  Name = c("Alice", "Brian", "Catherine", "David", "Eva",
+           "Frank", "Grace", "Henry", "Irene", "John"),
+  
+  Age = c(20, 22, 19, 21, 23,
+          20, 22, 21, 19, 23),
+  
+  Gender = c("Female", "Male", "Female", "Male", "Female",
+             "Male", "Female", "Male", "Female", "Male"),
+  
+  Grade = c("A", "B", "A", "C", "B",
+            "A", "B", "C", "A", "B"),
+  
+  stringsAsFactors = FALSE
+)
+
+setwd("F:/R/RMastery/inst/tutorials/data")
+
+# sqlite
+con = RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = "./data/database.db")
+
+# write data into the db
+RSQLite::dbWriteTable(con, "students", students, overwite=TRUE, append=TRUE)
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Using the connection above, execute a query to retrieve all records from the `students` table. Assign the result to a variable called `students_data`.
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+# query to read data from the sqlite database
+query <- "SELECT * FROM students"
+
+# execute the query
+students_data <- RSQLite::dbGetQuery(con, query)
+
+# head of the data
+head(students_data)
+
+# disconnect the connection
+RSQLite::dbDisconnect(con)
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---
+
+### Exercise 6
+
+Create a 10*10 multiplication table named `Mult` using matrix and a for loop. Display the contents of `Mult`.
+
+```{r exercise6, exercise=TRUE}
+# your code here
+```
+
+```{r exercise6-solution}
+# Create an empty 10x10 matrix
+Mult <- matrix(0, nrow = 10, ncol = 10)
+
+# Fill the matrix using a for loop
+for (i in 1:10) {
+  for (j in 1:10) {
+    Mult[i, j] <- i * j
+  }
+}
+
+# Display the matrix
+Mult
+```
+
+```{r exercise6-check}
+grade_code()
+```
+
+---
+
+### Exercise 7
+
+Create a function, **multiplication_table** where the user provides a value and it creates the multiplication table for it.
+
+```{r exercise7, exercise=TRUE}
+# your code here
+```
+
+```{r exercise7-solution}
+multiplication_table <- function(n){
+  if(n <= 0){
+    cat("Value cannot be 0")
+  } else {
+      # Create an empty 10x10 matrix
+    Mult <- matrix(0, nrow = n, ncol = n)
+    
+    # Fill the matrix using a for loop
+    for (i in 1:n) {
+      for (j in 1:n) {
+        Mult[i, j] <- i * j
+      }
+    }
+    
+    # Display the matrix
+    return(Mult)
+  }
+
+}
+
+multiplication_table(1)
+```
+
+```{r exercise7-check}
 grade_code()
 ```
 
