@@ -42,10 +42,10 @@ Launch your first lesson:
 library(RMastery)
 
 # browse available tutorials
-learnr::available_tutorials("RMastery")
+list_tutorials()
 
 # lauch a given lesson
-learnr::run_tutorial(name = "introduction", package = "RMastery")
+load_tutorial(tutorial = "data")
 ```
 ---
 
@@ -74,10 +74,10 @@ devtools::document()
 devtools::install()
 
 # browse available tutorials
-learnr::available_tutorials("RMastery")
+list_tutorials()
 
 # lauch a given lesson
-learnr::run_tutorial(name = "introduction", package = "RMastery")
+load_tutorial(tutorial = "data")
 ```
 ---
 

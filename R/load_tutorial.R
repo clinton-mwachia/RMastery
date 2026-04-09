@@ -15,21 +15,17 @@ load_tutorial <- function(package = "RMastery", tutorial) {
     stop("No tutorials found in this package.")
   }
 
-  if (is.character(tutorial)) {
-    match_idx <- which(tutorials$name == tutorial)
+  match_idx <- which(tutorials$name == tutorial)
 
-    if (length(match_idx) == 0) {
-      stop(sprintf(
-        "Tutorial '%s' not found.\nAvailable tutorials:\n- %s",
-        tutorial,
-        paste(tutorials$name, collapse = "\n- ")
-      ))
-    }
-
-    selected <- tutorials[match_idx[1], ]
-  } else {
-    stop("invalid `tutorial`")
+  if (length(match_idx) == 0) {
+    stop(sprintf(
+      "Tutorial '%s' not found.\nAvailable tutorials:\n- %s",
+      tutorial,
+      paste(tutorials$name, collapse = "\n- ")
+    ))
   }
+
+  selected <- tutorials[match_idx[1], ]
 
   # ---- Launch tutorial ----
   cat(sprintf("\n🚀 Launching: %s...\n\n", selected$title))
