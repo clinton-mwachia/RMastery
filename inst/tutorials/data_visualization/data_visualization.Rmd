@@ -1,0 +1,267 @@
+---
+title: "Fundamentals of R"
+subtitle: "Data Visualization"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Visualize data using Charts/Graphs in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Data visualization plays a crucial role in understanding and interpreting data. In R, there are various graphical techniques available to visualize data effectively. 
+
+In this lesson, we will explore six commonly used visualization methods: *scatter plot, line plot, pie chart, bar plot, box-plot,* and *histogram.* 
+
+## The data
+
+we will create a data frame that we will use to create the visuals.
+
+```{r data}
+# the data
+data = data.frame(
+  subject = c("Math", "Eng", "Kis", "Chem", "Phy", "Hist", 
+              "Geo", "Bio", "CRE", "IRE"),
+  marks = c(45, 50, 52, 59, 55, 59, 60, 62, 79, 85),
+  age = c(15, 18, 25, 45, 49, 45, 58, 65, 69, 79),
+  gender = c("Male","Female","Male","Female","Female","Female","Male",
+             "Male","Female","Male")
+)
+
+data
+```
+
+## Scatter Plot
+
+A scatter plot is used to visualize the relationship between two continuous variables. It displays individual data points as dots on a two-dimensional plane.
+
+```{r scatter-plot}
+# Scatter plot
+plot(data$age, data$marks, main = "Age vs Marks", xlab = "Age", ylab = "Marks")
+```
+
+**Interpretation**
+
+The scatter plot shows a positive linear relationship between the Age and Marks. As Age increases, Marks also increases, indicating a strong positive correlation.
+
+## Line Plot
+
+A line plot is commonly used to visualize the trend or pattern of a variable over time or another continuous variable.
+
+```{r line-plot}
+# Line plot
+plot(data$age, data$marks, type = "o", main = "Age vs Marks", 
+     xlab = "Age", ylab = "Marks")
+```
+
+**Interpretation**
+
+The line plot shows the trend of the Marks over Ages. It indicates an initial increase, followed by a slight decrease and then a further increase.
+
+## Pie Chart
+
+A pie chart is a circular visualization that represents categorical data as slices of a pie, with each slice representing a proportion of the whole.
+
+```{r pie-chart}
+# pie chart
+pie(data$marks, labels = data$subject, main = "Marks")
+```
+
+**Interpretation**
+
+The pie chart displays the marks data as proportions of the whole. Each slice represents a subject, and the size of the slice corresponds to the proportion of that subject.
+
+## Bar Plot
+
+A bar plot is used to compare different categories or groups by displaying bars of varying lengths.
+
+```{r bar-plot}
+# Bar plot
+barplot(data$marks, names.arg = data$subject, main = "Subject Performance", 
+        xlab = "Subject", ylab = "Marks")
+```
+
+**Interpretation**
+
+The bar plot visually compares the marks of different subject. IRE has the highest marks and Math has the lowest.
+
+## Boxplot 
+
+A boxplot summarizes the distribution of a continuous variable by displaying the median, quartiles, and outliers.
+
+```{r box-plot}
+# boxplot
+boxplot(data$marks~data$gender, main = "Distribution of Marks by gender", ylab = "Marks")
+```
+
+**Interpretation**
+
+The boxplot shows the distribution of marks in each gender. It displays the median, quartiles, and any outliers. Male students have the highest mean value, followed by female.
+
+## Histogram
+
+A histogram visualizes the distribution of a continuous variable by grouping the data into bins and displaying the frequencies or densities of each bin.
+
+```{r hist}
+# Histogram
+hist(data$marks, main = "Marks", xlab = "Marks", ylab = "Frequency")
+```
+
+**Interpretation**
+
+The histogram displays the frequency of values in different bins. It provides insights into the distribution and shape of the marks data. In this example, the data appears to be somewhat right-skewed and most of the student got between 50 and 60.
+
+---
+
+## Exercises
+
+**Instructions**
+
+You are provided with the data `DATA.xlsx` in the `data` folder. you will use the data to answer all the questions.
+
+### Exercise 1
+
+Using a scatter plot, visualize the relationship between "Age" and "Income". Interpret the scatter plot and determine the correlation between the variables.
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_visualization")
+# load the data
+data = readxl::read_excel("data/DATA.xlsx", sheet = "data")
+
+# plot the data
+plot(data$age, data$income, type="p", main = "Age vs Income", 
+     xlab = "County", ylab = "Sales")
+
+# correlation
+cor(data$age, data$income)
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Use a line plot to show the monthly sales trend for the product. Identify any patterns or trends in the data.
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_visualization")
+# load the data
+data = readxl::read_excel("data/DATA.xlsx", sheet = "sales")
+
+# plot the data
+plot(data$month, data$sales, type="p", main = "Month vs sALES", 
+     xlab = "Month", ylab = "Sales")
+
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+Create a pie chart to display the distribution of car types. Calculate the percentage of each car type and display it in the pie chart.
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_visualization")
+# load the data
+data = readxl::read_excel("data/DATA.xlsx", sheet = "cars")
+
+# Calculate angles
+angles <- round((data$count / sum(data$count)) * 360, 1)
+
+# Create labels with degree symbols
+pie_labels <- paste0(data$car, "\n", angles, "°")
+
+# Plot
+pie(data$count, labels = pie_labels, 
+    col = rainbow(length(data$car)), main = "Pie Chart with Angles")
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Create a bar plot to compare the population sizes of different countries. Identify the country with the highest population and compare it with other countries.
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_visualization")
+# load the data
+data = readxl::read_excel("data/DATA.xlsx", sheet = "countries")
+
+barplot(data$population, names.arg = data$country, 
+        main = "Population Analysis", 
+        xlab = "Country", ylab = "Population")
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Create a box-plot to compare the exam scores of students from three different schools (A, B, C). Analyze the variation in scores between the schools and comment.
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_visualization")
+# load the data
+data = readxl::read_excel("data/DATA.xlsx", sheet = "scores")
+
+boxplot(data$performance~ data$school,
+        main="School Performance Analysis",
+        xlab="School", ylab = "Performance")
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---
