@@ -69,12 +69,7 @@ Each lesson includes:
 ## How to Run A Lesson Locally during dev
 
 ```r
-devtools::document()
-
-devtools::install()
-
-# browse available tutorials
-list_tutorials()
+build_and_list()
 
 # lauch a given lesson
 load_tutorial(tutorial = "data")
