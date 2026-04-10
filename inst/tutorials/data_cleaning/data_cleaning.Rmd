@@ -1,0 +1,385 @@
+---
+title: "Fundamentals of R"
+subtitle: "Data Cleaning"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Cleaning Data in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Data cleaning is an essential step in the data analysis process. It involves identifying and handling various data issues, such as **missing values, duplicates, incorrect data types and many more**. 
+In this lesson, we will cover techniques for cleaning and preparing your data in R.
+
+## Missing Data
+
+**Checking Missing Data**
+
+Missing data can occur when certain observations or variables have incomplete or unknown values. 
+
+It is crucial to identify and handle missing data appropriately to avoid biased analysis. 
+
+R provides functions to detect and handle missing values, such as `is.na()` and `complete.cases()`.
+
+```{r missing-data}
+# clean data
+data <- data.frame(
+  x = c(1, 2, 3, 4, 5),
+  y = c("a", "b", "c", "d", "e")
+)
+
+# Checking for missing values
+is.na(data)
+```
+
+
+```{r missing-data-2}
+# data with NA values
+data2 <- data.frame(
+  a = c(100, 203, 340, 450, 550),
+  x = c(1, 2, 3, 4, NA),
+  y = c(80, 83, NA, 90, 34),
+  z = c(10, 20, 30, 40, 50)
+)
+
+# Checking for missing values
+is.na(data2)
+```
+
+**Handling Missing Data**
+
+Handling missing data is crucial in data analysis to ensure accurate and reliable results. 
+
+In R, there are several ways to handle missing data. Here are some common techniques
+
+**Removing Missing Data**
+
+One approach is to remove the rows or columns with missing data from the dataset. This method is suitable when the missing data is random and does not significantly impact the overall analysis.
+
+```{r omit-na}
+# Removing rows with missing values
+clean_data = na.omit(data2) 
+
+# Removing columns with missing values
+clean_data2 <- data2[, -c(2,3)] 
+
+is.na(clean_data)
+is.na(clean_data2)
+```
+
+**Imputing Missing Data with mean/median**
+
+Imputation involves replacing missing values with estimated or plausible values. This approach helps retain the complete dataset while minimizing the impact of missing data.
+
+```{r impute-na}
+data2_copy = data2
+# Imputing missing values with mean
+data2_copy$x <- ifelse(is.na(data2_copy$x), 
+                       mean(data2_copy$x, na.rm = TRUE), data2_copy$x)
+
+data2_copy$y <- ifelse(is.na(data2_copy$y), 
+                       mean(data2_copy$y, na.rm = TRUE), data2_copy$y)
+
+is.na(data2_copy)
+```
+
+## Duplicate Data
+
+Duplicate data refers to observations that have identical values across multiple variables.
+
+It is important to identify and remove duplicates to avoid skewed analysis results. R offers functions like `duplicated()` and `unique()` for checking and handling duplicate data.
+
+**Checking Duplicate Data**
+
+```{r duplicate-data}
+# Creating a sample data frame with duplicate values
+data_dup <- data.frame(
+  x = c(1, 2, 3, 4, 2),
+  y = c("a", "b", "c", "d", "b"),
+  z = c(1, 2, 3, 4, 2)
+)
+
+# Checking for duplicate rows
+any_dup <- any(duplicated(data_dup))
+any_dup
+```
+
+**Count Duplicate rows**
+
+Sometimes, it may be useful to identify and count the number of duplicate rows in a dataset without removing them. This can help gain insights into the frequency of duplicate observations.
+
+```{r dup-count}
+# Counting duplicate rows
+dup_count <- table(duplicated(data_dup))
+dup_count
+```
+
+**Remove Duplicate Data**
+
+```{r remove-dup}
+# get unique data
+unique_data <- unique(data_dup)
+
+any(duplicated(unique_data))
+```
+
+These techniques help in handling duplicate data in R. It is important to carefully consider the nature of the data and the specific analysis requirements when deciding on the appropriate method for handling duplicates.
+
+## Dropping Columns/Rows
+
+Removing unnecessary columns or rows in R involves excluding specific variables or observations from a dataset.
+
+Some common techniques for removing unnecessary columns or rows include: -
+
+**Removing Columns by Index**
+
+```{r rem-col-by-index}
+# make a copy of duplicated data frame
+data_dup_copy = data_dup
+
+# Removing columns 1
+new_data_dup_copy <- data_dup_copy[, -1]
+
+new_data_dup_copy
+```
+
+**Removing Columns by Name**
+
+```{r rem-col-by-name}
+# make a copy of duplicated data frame
+data_dup_copy = data_dup
+
+# Removing columns 1
+new_data_dup_copy <- data_dup_copy[, c("y","z")]
+
+new_data_dup_copy
+```
+
+We can simplify the above process by using a package called `dplyr` as shown below
+
+```{r rem-col-dplyr, warning=FALSE}
+library(dplyr) # provides the select function
+library(magrittr) # for piping operator
+
+# remove column x
+new_data_dup_copy =  data_dup %>%
+  select(-x)
+
+new_data_dup_copy
+```
+
+**Removing Rows with NA Values**
+
+```{r rem-rown-na}
+# Removing rows with NA values
+data2[complete.cases(data2), ]
+```
+
+**Removing Rows by Index**
+
+```{r rem-row-index}
+# Removing row 1
+data2[-1,]
+
+# Removing row 1, and 3
+data2[-c(1,3),]
+
+# Removing row 1 through 3
+data2[-c(1:3),]
+```
+
+**Removing Duplicate Rows**
+
+```{r rem-dup-row}
+unique(data2)
+```
+
+**Filter Rows by condition**
+
+```{r rem-row-cond}
+# filter data with x = 1
+data2[data2$x == 1,]
+
+# filter data with x > 1
+data2[data2$x > 1,]
+```
+
+## Outliers
+
+Outlier is an observation or data point that significantly deviates from the overall pattern or distribution of the dataset.
+
+Outliers are extreme values that lie far away from the majority of the data points and may have a disproportionate influence on statistical measures and analyses.
+
+Outliers can arise due to various reasons, such as data entry errors, measurement errors, natural variations, or rare events. They can distort statistical measures, impact the assumptions of certain analysis techniques, and affect the accuracy and reliability of data analysis results.
+
+Identifying and understanding outliers is important because they can provide valuable insights into the data, highlight anomalies, or indicate potential data quality issues.
+
+It is essential to consider the context and domain knowledge when determining whether an observation is an outlier. Outliers may be legitimate data points that represent unusual or significant phenomena, or they may be data errors that need to be addressed during data cleaning and analysis.
+
+**Outlier Detection**
+
+**Using Box-Plots**
+
+```{r outlier-det-boxplot}
+# loading required library
+library(ggplot2) # for plots
+# sample data
+df = data.frame(
+  heights = c(165, 170, 175, 180, 185, 190, 195, 200, 205,300)
+)
+
+# box-plot
+df %>%
+  ggplot(aes(y=heights)) +
+  geom_boxplot() +
+  theme_bw() +
+  ggtitle("Outliers")
+```
+
+By examining the boxplot, outliers can be identified as points that are significantly outside the whiskers of the boxplot. In this case, the height value of 300 appears to be an outlier.
+
+**Using Z-Scores**
+
+Z-scores measure how many standard deviations an observation is from the mean. Observations with a z-score greater than a certain threshold (e.g., 2 or 3) can be considered outliers. R provides the scale() function to calculate z-scores.
+
+```{r outlier-det-zscore}
+# Calculating z-scores
+z_scores <- scale(df$heights)
+z_scores
+# Identifying outliers
+outliers <- which(abs(z_scores) > 2)
+outliers
+```
+
+## Exercises
+
+**Instructions**
+
+You are provided with the data `titanic.csv` in the `data` folder. you will use the data to answer all the questions.
+
+### Exercise 1
+
+How many missing values exist in each column?
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_cleaning")
+# load the data
+data = read.csv("data/titanic.csv")
+
+colSums(is.na(data))
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Replace missing Age values with the median age.
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_cleaning")
+# load the data
+data = read.csv("data/titanic.csv")
+
+data$Age[is.na(data$Age)] <- median(data$Age, na.rm = TRUE)
+
+colSums(is.na(data))
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+Remove columns that are not useful for our analysis (e.g., Cabin, Ticket, Name, PassengerId).
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_cleaning")
+
+data <- data %>% select(-Cabin, -Ticket, -Name, -PassengerId)
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Convert Sex and Embarked into factors.
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_cleaning")
+
+data$Sex <- as.factor(data$Sex)
+data$Embarked <- as.factor(data$Embarked)
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Group passengers into categories: **Child, Adult, Senior.**
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+# change the working directory
+setwd("F:/R/RMastery/inst/tutorials/data_cleaning")
+
+data$AgeGroup <- cut(data$Age,
+                   breaks = c(0, 12, 60, Inf),
+                   labels = c("Child", "Adult", "Senior"))
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---
