@@ -1,0 +1,316 @@
+---
+title: "Fundamentals of R"
+subtitle: "Logistic Regression"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Logistic Modelling in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+# loading libraries
+library(tidyverse)
+library(mice) # missing data imputation
+library(viridis) # fill plots with colors
+library(caret) # data splitting
+library(sjPlot) # print model summary as a plot
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Logistic regression is a widely used algorithm for binary classification problems in machine learning. In this lesson, we will explore how to implement machine learning using logistic regression in R. We will cover the entire process, from loading and cleaning the data to model training, evaluation, and making predictions.
+
+## The Data
+
+The sinking of the Titanic is one of the most infamous shipwrecks in history.
+
+On April 15, 1912, during her maiden voyage, the widely considered "unsinkable" RMS Titanic sank after colliding with an iceberg. Unfortunately, there weren't enough lifeboats for everyone onboard, resulting in the death of 1502 out of 2224 passengers and crew.
+
+While there was some element of luck involved in surviving, it seems some groups of people were more likely to survive than others.
+
+In this challenge, we will build a predictive model that answers the question: "what sorts of people were more likely to survive?" using passenger data (ie name, age, gender, socio-economic class, etc). We will use the titanic dataset in this lesson, you can learn more from the kaggle website.
+
+
+```{r data-loading}
+# loading the train data
+train = read.csv("data/train.csv")
+
+# subset columns you need
+train_updated = train %>%
+  select(-c(PassengerId, Name, SibSp, Parch, Ticket, Cabin, Embarked))
+
+# data summary
+summary(train_updated)
+
+# na count
+colSums(is.na(train_updated))
+```
+
+## Data Cleaning
+
+**Missing Data**
+
+```{r handle-na}
+# define the imputation model
+imp_model <- mice(train_updated, method = "pmm", m = 5)
+
+# get complete data
+imputed_data <- complete(imp_model)
+
+colSums(is.na(imputed_data))
+```
+
+**Data Types**
+
+The data types of all variables are wrongly labeled except for Age and Fare. We will convert the data types of Survived, PClass and Sex into factors.
+
+```{r data-types}
+# converting data types to factors
+imputed_data = imputed_data %>%
+  mutate(
+    Survived = as.factor(Survived),
+    Pclass = as.factor(Pclass),
+    Sex = as.factor(Sex)
+  )
+
+
+# data summary
+summary(imputed_data)
+```
+
+## Exploratory Data Analysis
+
+**Survival rate by passenger class**
+
+```{r surv-by-pclass}
+imputed_data %>%
+  mutate(
+    Survived = ifelse(Survived == 0, "No", "Yes"),
+    Pclass = ifelse(Pclass == 1, "Upper", 
+                    ifelse(Pclass == 2, "Middle", "Lower"))
+  ) %>%
+  ggplot(aes(x = Pclass, fill = Survived)) +
+  geom_bar(position = "dodge") +
+  scale_fill_viridis(discrete = T) +
+  labs(title = "Survival rate by passenger class",
+       subtitle = "Data Source: Kaggle Titanic dataset",
+       x = "Passenger class",
+       y = "Survival rate",
+       fill = "Survived") +
+  theme_bw()
+
+```
+
+This plot shows the survival rate for passengers in each class. As you can see, passengers in first class had the highest survival rate, followed by passengers in second class. Passengers in third class had the lowest survival rate.
+
+**Age Distribution of Survivors**
+
+```{r survivors-age-dist}
+imputed_data %>%
+  mutate(
+    Survived = ifelse(Survived == 0, "No", "Yes")
+  ) %>%
+  filter(Survived == "Yes") %>%
+  ggplot(aes(x = Age)) +
+  geom_histogram(binwidth = 10) +
+  labs(title = "Age Distribution of Survivors",
+       x = "Age",
+       y = "Number of Survivors") +
+  theme_bw()
+```
+
+**Comment:** This plot shows the age distribution of survivors. As you can see, there were more survivors in the younger age groups. This is likely because children and young adults were more likely to be given priority for lifeboats.
+
+**Fare Paid by Passenger Class**
+
+```{r fare-by-pclass}
+imputed_data %>%
+  mutate(
+    Pclass = ifelse(Pclass == 1, "Upper", 
+                    ifelse(Pclass == 2, "Middle", "Lower"))
+  ) %>%
+  ggplot(aes(x = Pclass, y = Fare)) +
+  geom_boxplot() +
+  labs(title = "Fare Paid by Passenger Class",
+       x = "Passenger Class",
+       y = "Fare") +
+  theme_bw()
+```
+
+**Comment:** This plot shows the distribution of fare paid by passenger class. As you can see, passengers in first class paid the highest fares, followed by passengers in second class. Passengers in third class paid the lowest fares.
+
+**Survival Rate by Sex**
+
+```{r surv-by-sex}
+imputed_data %>%
+  mutate(
+    Survived = ifelse(Survived == 0, "No", "Yes")
+  ) %>%
+  ggplot(aes(x = Sex, fill = Survived)) +
+  geom_bar(position = "dodge") +
+  scale_fill_viridis(discrete = T) +
+  labs(title = "Survival Rate by Sex",
+       x = "Sex",
+       y = "Survival Rate",
+       fill = "Survived") +
+  theme_bw()
+```
+
+**Comment:** This plot shows the survival rate for passengers by sex. As you can see, female passengers had a higher survival rate than male passengers. This is likely because women and children were more likely to be given priority for lifeboats.
+
+**Survival Rate by Age and Sex**
+
+```{r surv-age-sex}
+imputed_data %>%
+  mutate(
+    Survived = ifelse(Survived == 0, "No", "Yes")
+  ) %>%
+  ggplot(aes(x = Age, fill = Survived)) +
+  geom_density(alpha = 0.2) +
+  facet_wrap(~Sex) +
+  labs(title = "Survival Rate by Age and Sex",
+       x = "Age",
+       y = "Density",
+       fill = "Survived")
+
+```
+
+**Comment:** This plot shows the survival rate for passengers by age and sex. As you can see, female passengers had a higher survival rate than male passengers at all ages. However, the survival rate for female passengers was particularly high in the younger age groups.
+
+## Modelling
+
+**Splitting the Data**
+
+We will split the data into: -
+
+      1. Training Data (80%).
+      2. Validation Data (20%).
+      
+```{r data-splitting}
+# splitting index
+index = createDataPartition(imputed_data$Survived, p=0.8, list = FALSE)
+
+# training data
+training = imputed_data[index,]
+
+# validation data
+validation = imputed_data[-index,]
+```
+
+**Fitting Base model**
+
+```{r}
+# the model
+model = glm(Survived~., data = training, family = binomial(link="logit"))
+
+# model summary
+tab_model(model)
+```
+
+**Predictions and Evaluation**
+
+```{r pred}
+# predictions
+pred = predict(model, newdata = validation, type = "response")
+
+# picking a threshold of 0.6
+pred = ifelse(pred >= 0.6, 1, 0)
+
+# confusion matrix
+mt = table(validation$Survived,pred)
+
+confusionMatrix(mt)
+```
+
+The base model achieved an accuracy of `r confusionMatrix(mt)$overall[['Accuracy']]`.
+
+**Visualize results**
+
+To plot the results of a logistic regression model, you can create various types of visualizations depending on the specific requirements and objectives. Here are a few common ways to visualize the results of a logistic regression model in R:
+
+      **ROC Curve**
+      
+    The Receiver Operating Characteristic (ROC) curve is a widely used graphical          representation to evaluate the performance of a binary classifier. It shows the       trade-off between the true positive rate (sensitivity) and the false positive         rate (1 - specificity) at various classification thresholds.
+    
+```{r roc-curve}
+# ROC curve
+library(pROC)
+roc_curve <- roc(validation$Survived, pred)
+plot(roc_curve, main = "ROC Curve", col = "blue")
+```
+
+
+    **Coefficient Plot**
+      
+     A coefficient plot can be used to visualize the estimated coefficients of the        logistic regression model, providing insights into the importance and direction of     each variable's impact on the outcome.`
+    
+```{r coef-plot}
+coef_data <- data.frame(variable = names(coef(model)), coefficient = coef(model))
+
+ggplot(coef_data, aes(x = variable, y = coefficient)) + 
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  geom_bar(stat = "identity", fill = "blue") + 
+  coord_flip() +
+  labs(title = "Logistic Regression Coefficient Plot") +
+  theme_bw()
+```
+
+## Assignment
+
+FIT TWO OTHER LOGISTIC REGRESSION MODELS USING DIFFERENT APPROACHES. YOUR TWO MODELS SHOULD BE BETTER THAN THE MODELS WE HAVE ALREADY FITTED. 
+
+1. CREATE A NEW RMD FILE.
+2. NAME IT `Logistic-Regression-Assignment.Rmd`.
+3. COMPLETE THE TASK PROVIDED ABOVE.
+4. KNIT TO HTML.
+
+TIPS:
+
+To evaluate the performance of a logistic regression model and improve its performance, you can consider the following techniques:
+
+1. Confusion Matrix:
+A confusion matrix provides a comprehensive evaluation of a classification model's performance by showing the true positive (TP), true negative (TN), false positive (FP), and false negative (FN) values. From the confusion matrix, you can calculate various metrics such as accuracy, precision, recall, and F1 score.
+
+2. Accuracy:
+Accuracy measures the overall correctness of the model's predictions. It is the ratio of the correctly classified instances to the total number of instances. However, accuracy alone may not be sufficient, especially when dealing with imbalanced datasets, as it can be misleading.
+
+3. Precision and Recall:
+Precision measures the proportion of correctly predicted positive instances out of all predicted positive instances. It is useful when you want to minimize false positives. Recall, also known as sensitivity or true positive rate, measures the proportion of correctly predicted positive instances out of all actual positive instances. It is useful when you want to minimize false negatives.
+
+4. F1 Score:
+The F1 score combines precision and recall into a single metric, providing a balanced evaluation of the model's performance. It is the harmonic mean of precision and recall and is useful when you need to consider both precision and recall simultaneously.
+
+5. Receiver Operating Characteristic (ROC) Curve and Area Under the Curve (AUC):
+ROC curves plot the true positive rate (TPR) against the false positive rate (FPR) at various classification thresholds. AUC represents the overall performance of the model across all thresholds. A higher AUC indicates better model performance.
+
+6. Cross-Validation:
+Cross-validation helps estimate the model's performance on unseen data. It involves splitting the data into multiple subsets, training the model on a portion of the data, and evaluating it on the remaining portion. This process is repeated several times, and the average performance metric is computed. Common cross-validation techniques include k-fold cross-validation and stratified cross-validation.
+
+To improve the performance of a logistic regression model, you can consider the following strategies:
+
+1. Feature Selection:
+Identify and select the most relevant features for the model. You can use techniques such as stepwise regression, LASSO (Least Absolute Shrinkage and Selection Operator), or Recursive Feature Elimination (RFE). Feature selection helps eliminate irrelevant or redundant features, reducing model complexity and potential overfitting.
+
+2. Feature Engineering:
+Create new features or transform existing ones to capture additional information. This could involve interactions between variables, polynomial terms, or domain-specific transformations. Feature engineering can help the model better capture complex relationships and improve its predictive power.
+
+3. Regularization:
+Apply regularization techniques such as Ridge regression or Lasso regression to prevent overfitting. Regularization adds a penalty term to the logistic regression model, discouraging overly complex models. It helps to find the right balance between bias and variance, leading to better generalization.
+
+4. Handling Imbalanced Data:
+If the dataset is imbalanced (having a disproportionate number of observations in one class), consider techniques such as oversampling the minority class, undersampling the majority class, or using weighted loss functions. These techniques help address the bias towards the majority class and improve the model's ability to predict the minority class accurately.
+
+5. Hyperparameter Tuning:
+Experiment with different hyperparameter values of the logistic regression model. Hyperparameters include regularization strength, convergence criteria, maximum number of iterations, or learning rate. Grid search, random search, or Bayesian optimization can be used to find the optimal combination of hyperparameters that improves the model's performance.
+
+6. Model Comparison and Ensemble Methods:
+Compare the logistic regression model's performance with other classification algorithms, such as random forest, support vector machines, or gradient boosting. Ensemble methods, such as bagging or boosting, can combine multiple models to improve predictive accuracy.
+
+Remember that model evaluation and improvement are iterative processes. It's important to assess the model's performance using multiple evaluation metrics and explore different techniques to identify the most effective approaches for improving its performance. Additionally, domain knowledge and context-specific considerations play a crucial role in selecting the most appropriate strategies for a given problem.
