@@ -22,6 +22,11 @@ Imports:
     plotly,
     naniar,
     maps,
+    tidyverse,
+    mice,
+    viridis,
+    caret,
+    randomForest,
     utils
 Suggests: 
     knitr,
