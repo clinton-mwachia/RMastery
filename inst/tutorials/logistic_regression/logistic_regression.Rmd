@@ -108,7 +108,7 @@ imputed_data %>%
 
 ```
 
-This plot shows the survival rate for passengers in each class. As you can see, passengers in first class had the highest survival rate, followed by passengers in second class. Passengers in third class had the lowest survival rate.
+**Comment:** This plot shows the survival rate for passengers in each class. As you can see, passengers in first class had the highest survival rate, followed by passengers in second class. Passengers in third class had the lowest survival rate.
 
 **Age Distribution of Survivors**
 
