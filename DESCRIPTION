@@ -1,7 +1,7 @@
 Package: RMastery
 Type: Package
 Title: Interactive R Learning Platform with Tutorials and Exercises
-Version: 0.4.16
+Version: 0.4.17
 Authors@R: 
     person("Clinton", "Moshe", email="clintonmwachia9@gmail.com", role=c("aut", "cre"))
 Description: 

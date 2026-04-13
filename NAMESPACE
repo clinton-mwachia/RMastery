@@ -3,3 +3,4 @@
 export(build_and_list)
 export(list_tutorials)
 export(load_tutorial)
+export(start_learning)
