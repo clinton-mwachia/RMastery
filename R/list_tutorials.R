@@ -20,7 +20,7 @@ list_tutorials <- function(package = "RMastery", print = TRUE) {
   }
 
   if (print) {
-    cat("\n📚 Available Tutorials\n")
+    cat("\nAvailable Tutorials\n")
     cat("======================\n\n")
 
     for (i in seq_len(nrow(tutorials))) {

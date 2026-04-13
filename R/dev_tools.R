@@ -16,30 +16,30 @@ build_and_list <- function(package = "RMastery") {
   }
 
   cat("\n==============================\n")
-  cat("🔧 Building Package Workflow\n")
+  cat("Building Package Workflow\n")
   cat("==============================\n\n")
 
   # Step 1: Document
-  cat("📄 Documenting package...\n")
+  cat("Documenting package...\n")
   devtools::document()
 
   # Step 2: Install
-  cat("📦 Installing package...\n")
+  cat("Installing package...\n")
   devtools::install()
 
   # Step 3: Load package
-  cat("📥 Loading package...\n")
+  cat("Loading package...\n")
   suppressPackageStartupMessages(
     library(package, character.only = TRUE)
   )
 
   # Step 4: List tutorials
-  cat("\n📚 Available Tutorials:\n\n")
+  cat("\nAvailable Tutorials:\n\n")
 
   tutorials <- learnr::available_tutorials(package = package)
 
   if (nrow(tutorials) == 0) {
-    cat("⚠️ No tutorials found.\n")
+    cat("No tutorials found.\n")
     return(invisible(NULL))
   }
 
@@ -47,7 +47,7 @@ build_and_list <- function(package = "RMastery") {
     cat(sprintf("[%d] %s\n", i, tutorials$name[i]))
   }
 
-  cat("\n✅ Done!\n\n")
+  cat("\n one!\n\n")
 
   return(invisible(tutorials))
 }

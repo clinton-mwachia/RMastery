@@ -28,7 +28,7 @@ load_tutorial <- function(package = "RMastery", tutorial) {
   selected <- tutorials[match_idx[1], ]
 
   # ---- Launch tutorial ----
-  cat(sprintf("\n🚀 Launching: %s...\n\n", selected$title))
+  cat(sprintf("\nLaunching: %s...\n\n", selected$title))
 
   learnr::run_tutorial(
     name = selected$name,

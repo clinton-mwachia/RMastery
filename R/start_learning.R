@@ -6,18 +6,18 @@
 start_learning <- function() {
   package_name <- "RMastery"
 
-  cat("📚 Welcome to RMastery!\n")
+  cat("Welcome to RMastery!\n")
   cat("Learn R step by step using interactive tutorials.\n\n")
 
   # Get available tutorials
   tutorials <- learnr::available_tutorials(package = package_name)
 
   if (nrow(tutorials) == 0) {
-    stop("❌ No tutorials found. Make sure the package is installed correctly.")
+    stop("No tutorials found. Make sure the package is installed correctly.")
   }
 
   repeat {
-    cat("\n🧭 Available Lessons:\n")
+    cat("\nAvailable Lessons:\n")
 
     for (i in seq_len(nrow(tutorials))) {
       cat(paste0(i, ". ", tutorials$name[i], "\n"))
@@ -26,33 +26,33 @@ start_learning <- function() {
     cat("\n0. Exit\n")
 
     # Get user input
-    choice <- readline(prompt = "👉 Select a lesson number: ")
+    choice <- readline(prompt = "Select a lesson number: ")
 
     # Validate input
     if (!grepl("^[0-9]+$", choice)) {
-      cat("❌ Please enter a valid number.\n")
+      cat("Pease enter a valid number.\n")
       next
     }
 
     choice <- as.integer(choice)
 
     if (choice == 0) {
-      cat("👋 Goodbye! Keep practicing R.\n")
+      cat("Goodbye! Keep practicing R.\n")
       break
     }
 
     if (choice < 1 || choice > nrow(tutorials)) {
-      cat("❌ Invalid selection. Try again.\n")
+      cat("nvalid selection. Try again.\n")
       next
     }
 
     tutorial_name <- tutorials$name[choice]
 
-    cat(paste0("\n🚀 Launching: ", tutorials$title[choice], "...\n"))
+    cat(paste0("\nLaunching: ", tutorials$title[choice], "...\n"))
 
     # Run tutorial
     learnr::run_tutorial(tutorial_name, package = package_name)
 
-    cat("\n✅ Tutorial completed (or closed).\n")
+    cat("\nutorial completed (or closed).\n")
   }
 }

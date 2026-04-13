@@ -1,5 +1,4 @@
 Package: RMastery
-Type: Package
 Title: Interactive R Learning Platform with Tutorials and Exercises
 Version: 0.4.17
 Authors@R: 
@@ -15,22 +14,22 @@ Depends:
     R (>= 4.0)
 Imports: 
     learnr,
+    devtools
+Suggests: 
+    magrittr,
     gradethis,
     ggplot2,
+    knitr,
+    rmarkdown,
+    caret,
     dplyr,
-    magrittr,
     plotly,
     naniar,
     maps,
     tidyverse,
     mice,
     viridis,
-    caret,
-    randomForest,
-    utils
-Suggests: 
-    knitr,
-    rmarkdown
+    randomForest
 VignetteBuilder: knitr
 RoxygenNote: 7.3.3
 URL: https://github.com/clinton-mwachia/RMastery
