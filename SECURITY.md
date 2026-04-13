@@ -26,5 +26,6 @@ If the vulnerability is accepted, we will:
 
 If the report is declined, we will provide a clear explanation.
 
+
 Please avoid disclosing security issues publicly until they have been reviewed and resolved.
 
