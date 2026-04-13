@@ -1,0 +1,347 @@
+---
+title: "Fundamentals of R"
+subtitle: "Exploratory Data Analysis"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Visualize Data in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(dplyr)
+library(magrittr)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Exploratory Data Analysis (EDA) is a crucial step in data analysis, which helps to understand the underlying patterns, relationships, and distributions within the data. 
+
+In R, the *ggplot* package provides a powerful and flexible tool for creating visually appealing plots to perform EDA. 
+
+In this lesson, we will explore ten different types of plots using ggplot.
+
+## The data
+
+For this lesson, we will use the built-in **mtcars** dataset in R, which contains information about various car models.
+
+```{r load-data}
+# loading the data
+data("mtcars")
+
+# sample data
+head(mtcars)
+```
+
+## Scatter Plot
+
+A scatter plot visualizes the relationship between two numeric variables with each dot representing an observation. Using `mtcars` data, Let's visualize the relationship horsepower and mpg (miles per gallon) using ggplot.
+
+**Basic**
+
+```{r scatter-plot-basic}
+# Scatter plot
+ggplot(mtcars, aes(x = mpg, y = hp)) +
+  geom_point() +
+  labs(x = "Miles per Gallon", y = "Horsepower") +
+  ggtitle("Scatter Plot: Horsepower vs. MPG") +
+  theme_bw()
+```
+
+**Interpretation**
+
+The scatter plot shows the relationship between horsepower and miles per gallon for different car models. We can observe that as mpg increases, horsepower tends to decrease.
+
+## Bar Plot
+
+A bar plot represents the frequency or count of categorical variables. Let's create a bar plot of the number of cars based on their number of cylinders.
+
+```{r bar-plot}
+# Bar plot
+ggplot(mtcars, aes(x = factor(cyl))) +
+  geom_bar() +
+  labs(x = "Number of Cylinders", y = "Count") +
+  ggtitle("Bar Plot: Number of Cars by Cylinders") +
+  theme_classic()
+```
+
+**Interpretation**
+
+The bar plot illustrates the count of cars based on the number of cylinders. We can see that the dataset contains a higher number of cars with 4 and 8 cylinders.
+
+**Bar Plot with Grouping**
+
+A bar plot with grouping allows comparison of a numeric variable across different categories. Let's create a grouped bar plot to compare average miles per gallon for different numbers of cylinders and gears.
+
+```{r bar-plot-group}
+# Grouped bar plot
+mtcars_grouped = 
+  aggregate(mpg ~ cyl + gear, data = mtcars, FUN = mean) %>%
+  mutate(
+    gear = as.factor(gear),
+    cyl = as.factor(cyl)
+  )
+
+ggplot(mtcars_grouped, aes(x = cyl, y = mpg, fill = gear)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Number of Cylinders", y = "Average MPG") +
+  ggtitle("Grouped Bar Plot: Average MPG by Cylinders and Gears") +
+  theme_minimal()
+```
+
+**Interpretation**
+
+The grouped bar plot compares the average miles per gallon for different numbers of cylinders and gears. We can observe the variations in MPG values based on both cylinder count and gear type.
+
+
+## Histogram
+
+A histogram displays the distribution of a numeric variable. Let's plot the distribution of car weights using a histogram.
+
+```{r hist-plot}
+# Histogram
+ggplot(mtcars, aes(x = wt)) +
+  geom_histogram() +
+  labs(x = "Weight", y = "Frequency") +
+  ggtitle("Histogram: Distribution of Car Weights") +
+  theme_dark()
+```
+
+**Interpretation**
+
+The histogram represents the distribution of car weights. We observe that the majority of car weights fall between 2.5 and 4.5 units.
+
+## Box Plot
+
+A box plot provides a summary of the distribution of a numeric variable. Let's create a box plot to visualize the distribution of car miles per gallon based on the number of gears.
+
+```{r box-plot}
+# Box plot
+ggplot(mtcars, aes(x = factor(gear), y = mpg)) +
+  geom_boxplot() +
+  labs(x = "Number of Gears", y = "Miles per Gallon") +
+  ggtitle("Box Plot: MPG by Number of Gears") +
+  theme_light()
+```
+
+**Interpretation**
+
+The box plot displays the distribution of miles per gallon based on the number of gears. We can see the median, quartiles, and any outliers for each gear type.
+
+**Box-Plot with Regression Line**
+
+```{r scatter-plot-reg}
+# Scatter plot
+ggplot(mtcars, aes(x = wt, y = hp)) +
+  geom_point() +
+  geom_smooth(method = "lm") + # add a line to show trend
+  labs(x = "Weight", y = "Horsepower") +
+  ggtitle("Scatter Plot: Horsepower vs. Weight") +
+  theme_bw()
+```
+
+**Interpretation**
+
+The plot shows the relationship between car weight and horsepower, along with a regression line. We can observe the general trend that as weight increases, horsepower also tends to increase.
+
+
+## Line Plot
+
+A line plot illustrates the trend or pattern of a numeric variable over a continuous variable. Let's plot the car miles per gallon across various car models.
+
+```{r line-plot}
+# Line plot
+ggplot(mtcars, aes(x = rownames(mtcars), y = mpg, group = 1)) +
+  geom_line() +
+   geom_point() +
+  labs(x = "Car Model", y = "Miles per Gallon") +
+  ggtitle("Line Plot: MPG Across Car Models") +
+  theme_gray() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+**Interpretation**
+
+The line plot shows the trend of miles per gallon across different car models. We can observe variations in MPG values among the car models.
+
+## Violin Plot
+
+A violin plot displays the distribution of a numeric variable, providing insights into its density. Let's create a violin plot for car miles per gallon based on the number of cylinders.
+
+```{r violin-plot}
+# Violin plot
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_violin() +
+  labs(x = "Number of Cylinders", y = "Miles per Gallon") +
+  ggtitle("Violin Plot: MPG by Number of Cylinders") +
+  theme_bw()
+```
+
+**Interpretation**
+
+The violin plot presents the density distribution of miles per gallon for different numbers of cylinders. We can observe the spread and concentration of MPG values for each cylinder count.
+
+## Heatmap
+
+A heatmap visualizes the relationship between two categorical variables using colors. Let's create a heatmap to explore the relationship between car transmission type and the number of cylinders.
+
+```{r heatmap-plot}
+# scaling the data
+data = as.matrix(mtcars)
+# Heatmap
+heatmap(data, scale="column")
+```
+
+**Interpretation**
+
+The heatmap displays the relationship between car transmission type (0 = automatic, 1 = manual) and the number of cylinders. We can observe the distribution of transmission types across different cylinder counts.
+
+
+## Exercises
+
+### Exercise 1
+
+Using the built-in **AirPassengers** dataset, plot the time series and determine whether there is a trend in passenger numbers over time.
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+ts_data <- AirPassengers
+
+plot(ts_data, 
+     main = "Monthly Air Passengers (1949–1960)",
+     ylab = "Passengers", 
+     col = "blue")
+
+abline(lm(ts_data ~ time(ts_data)), col = "red", lwd = 2)
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Visualize global data and fill populations for the following regions:
+
+```
+region = c("Kenya", "Uganda", "Tanzania", "United States", "China", "India"),
+population = c(55, 48, 67, 331, 1440, 1390)
+```
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+library(ggplot2)
+library(dplyr)
+library(maps)
+
+world <- map_data("world")
+
+population_data <- data.frame(
+  region = c("Kenya", "Uganda", "Tanzania", "United States", "China", "India"),
+  population = c(55, 48, 67, 331, 1440, 1390) # in millions
+)
+
+world_pop <- left_join(world, population_data, by = "region")
+
+ggplot(world_pop, aes(long, lat, group = group, fill = population)) +
+  geom_polygon(color = "white") +
+  scale_fill_gradient(low = "lightyellow", high = "red", na.value = "grey90") +
+  theme_minimal() +
+  labs(title = "World Map with Population (Millions)",
+       fill = "Population")
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+Using the `naniar` library, Explore missing data patterns using the airquality dataset.
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+library(naniar)
+
+df <- airquality
+vis_miss(df)
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Using the `mtcars` dataset, Compare Miles Per Gallon (MPG) across different gear types.
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+boxplot(mpg ~ gear, data = mtcars,
+        main = "MPG by Number of Gears",
+        xlab = "Gears",
+        ylab = "Miles per Gallon")
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Using the `mtcars` dataset, Explore relationship between `weight` and `mpg` interactively.
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+library(plotly)
+
+p <- plot_ly(mtcars, 
+             x = ~wt, 
+             y = ~mpg, 
+             color = ~factor(cyl),
+             size = ~hp,
+             text = ~rownames(mtcars),
+             type = "scatter", 
+             mode = "markers")
+
+p
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---
+

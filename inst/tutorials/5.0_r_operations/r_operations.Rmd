@@ -1,0 +1,320 @@
+---
+title: "Fundamentals of R"
+subtitle: "R Operations"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Perform Various Mathematical Operations in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Operators are symbols or characters used to perform various mathematical, logical, and relational operations. 
+
+These operators are used to perform calculations, compare values, combine data, and manipulate variables in R. 
+
+Understanding the different types of operators in R is crucial for effective data analysis and programming in R. 
+
+In this context, this note provides an overview of some of the most commonly used operators in R. They include:- 
+
+    1. Assignment operators.
+    2. Arithmetic operators.
+    3. Comparison operators.
+    4. Logical operators.
+    5. concatenation operators. 
+    
+## Arithmetic operators
+
+These operators are used to perform mathematical operations such as addition, subtraction, multiplication, exponentiation, and modulus. These operations are illustrated below.
+
+**Addition**
+
+```{r}
+# adding two numbers
+2 + 100
+```
+
+**Subtraction**
+
+```{r}
+# subtracting two numbers
+2000 - 100
+```
+
+**Multiplication**
+
+```{r}
+# multiplying two numbers
+44 * 90
+```
+
+**Division**
+
+```{r}
+# dividing two numbers
+1000 / 20
+```
+
+**Exponentiation**
+
+```{r}
+# exponentiation
+2^3
+```
+
+**Modulus**
+
+```{r}
+# modulus
+100 %% 2
+# remainder?
+100 %% 3
+```
+
+## Assignment operators
+
+The assignment operator is used to assign values to variables. You can use either the equal sign or the leftward arrow to assign a value to a variable, both scenarios are illustrated below.
+
+**Using An Equal Sign** 
+
+```{r}
+# using an equal sign
+x = 10
+```
+
+THE VALUE OF X IS `r x`
+
+**Using A leftward arrow** 
+
+```{r}
+# using an equal sign
+x <- 20
+```
+
+THE NEW VALUE OF X IS `r x`
+
+## Comparison operators
+
+These operators are used to compare values. They will always return a Boolean value.
+
+**Equal to**
+
+```{r}
+10 == 15
+```
+
+**Not Equal to**
+
+```{r}
+20 != 15
+```
+
+**Less Than or Equal to**
+
+```{r}
+2 <= 15
+```
+
+**Greater Than or Equal to**
+
+```{r}
+20 >= 15
+```
+
+**Less Than**
+
+```{r}
+100 < 150
+```
+
+**Greater Than**
+
+```{r}
+100 > 1020
+```
+
+## Logical operators
+
+Logical operators are used to perform logical operations.
+
+**Logical AND Operator**
+
+```{r}
+TRUE & TRUE
+
+TRUE & FALSE
+```
+
+**Logical OR Operator**
+
+```{r}
+TRUE | TRUE
+
+TRUE | FALSE
+```
+
+**Logical NOT Operator**
+
+```{r}
+!TRUE
+
+!(2==5)
+```
+
+## concatenation operators
+
+This operator is used to combine variables into a vector.
+
+```{r}
+y = c(1,2,3)
+
+y
+```
+
+---
+
+## Exercises
+
+### Exercise 1
+
+Create variable *x* with the data *apple, banana, orange* and *y* with the data *rape, pineapple, watermelon*.
+
+Use concatenation operator to combine variable *x* and *y*.
+
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+x <- c("apple", "banana", "orange")
+
+y <- c("grape", "pineapple", "watermelon")
+
+c(x,y)
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Write a function, *calculate_all* that accepts two numbers and performs the following operations:-
+
+    1. Adds the two numbers
+    2. Subtracts the second number from the first number
+    3. Multiplies the two numbers
+    4. Divides the first number by the second number
+
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+calculate_all = function(a, b){
+  results <- list(
+    Sum = a+b,
+    Substraction = a-b,
+    Multiplication = a*b,
+    Division = ifelse(b != 0, a/b, "Undefined")
+  )
+  
+  return(results)
+}
+
+calculate_all(10, 20)
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+Using the seq() function, create a vector of integers from 1 to 10. Using arithmetic operators, calculate the sum of the vector.
+
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+nums = seq(1,10,by=1)
+
+sum(nums)
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Create a variable called *age* with a value of 30. Using comparison operators, print "You are an adult" if age is greater than or equal to 18, and "You are not an adult" if age is less than 18.
+
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+age = 30
+
+if(age >= 18){
+  cat("You are an adult")
+} else {
+  cat("You are not an adult")
+}
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Using the `rep()` function, create a vector with 10 repetitions of the string "hello". Using the `toUpper()` function, convert the vector to all uppercase letters. Using the concatenation operator, add an exclamation mark to the end of each element in the vector. Print the resulting vector.
+
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+# create the vector
+vec = rep("hello", 10)
+
+# convert to upper case
+vecUppercase = toupper(vec)
+
+# add exclamation
+paste0(vecUppercase,"!")
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---

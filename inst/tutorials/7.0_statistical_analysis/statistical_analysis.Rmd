@@ -1,0 +1,262 @@
+---
+title: "Fundamentals of R"
+subtitle: "Statistical Analysis"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Perform Statistical Analysis in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+R provides a powerful set of functions and packages for statistical analysis. In this lesson, we will cover various statistical functions and analysis techniques in R; **minimum, maximum, standard deviation, quartiles, mean, mode, median, summary statistics, range, frequency distribution, and interquartile range**.
+
+## Descriptive Statistics
+
+**Minimum Value**
+
+```{r min}
+# create the vector we will work with
+vec = c(1,2,3,4,-20,100,230)
+
+# lowest value
+min(vec)
+```
+
+**Maximum Value**
+
+```{r max}
+# highest value
+max(vec)
+```
+
+**Standard Deviation**
+
+```{r sd}
+# Standard Deviation
+sd(vec)
+```
+
+**Quantiles**
+
+```{r qt}
+# quantiles
+quantile(vec)
+```
+
+**Average**
+
+```{r average}
+# average
+mean(vec, na.rm = TRUE)
+```
+
+**Median**
+
+```{r median}
+# median
+median(vec, na.rm = TRUE)
+```
+
+**Range**
+
+```{r range}
+# range
+range(vec, na.rm = TRUE)
+```
+
+**Interquartile Range**
+
+```{r iqr}
+# Interquartile range
+IQR(vec, na.rm = TRUE)
+```
+
+## Frequency Distribution
+
+A frequency distribution displays the frequency (count) of each unique value in a data set.
+
+```{r fq}
+# freaquency
+table(vec)
+```
+
+## Summary Statistics
+
+Summary statistics provide a comprehensive summary of the central tendency, dispersion, and shape of a data set.
+
+```{r summary}
+# summary of vec
+summary(vec)
+```
+
+---
+
+## Exercises
+
+### Exercise 1
+
+Create a data frame named `df` with the variables `Student`, `Age`, `gender`, `maths`, `pass` and fill it with 20 records.
+
+The variables contain the following data types:
+
+      Student => string
+      Age => number
+      gender => factor
+      maths => number
+      pass => boolean
+      
+Print-out the summary of `df.`
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+df <- data.frame(
+  Student = c(
+    "Alice","Brian","Cathy","David","Eva",
+    "Frank","Grace","Henry","Irene","Jack",
+    "Kevin","Lily","Mike","Nina","Oscar",
+    "Paula","Quinn","Ryan","Sophia","Tom"
+  ),
+  
+  Age = c(
+    20,22,19,21,23,
+    20,22,21,19,23,
+    24,20,22,21,23,
+    20,22,21,19,23
+  ),
+  
+  gender = factor(c(
+    "Female","Male","Female","Male","Female",
+    "Male","Female","Male","Female","Male",
+    "Male","Female","Male","Female","Male",
+    "Female","Male","Male","Female","Male"
+  )),
+  
+  maths = c(
+    85,67,90,55,72,
+    88,76,60,95,70,
+    66,89,73,81,58,
+    92,64,77,86,69
+  ),
+  
+  pass = c(
+    TRUE, TRUE, TRUE, FALSE, TRUE,
+    TRUE, TRUE, FALSE, TRUE, TRUE,
+    TRUE, TRUE, TRUE, TRUE, FALSE,
+    TRUE, TRUE, TRUE, TRUE, TRUE
+  ),
+  
+  stringsAsFactors = FALSE
+)
+
+summary(df)
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Who is the youngest and oldest student(s)?
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+# Youngest student(s)
+youngest <- df[df$Age == min(df$Age), ]
+
+# Oldest student(s)
+oldest <- df[df$Age == max(df$Age), ]
+
+youngest
+oldest
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+What percentage of the students are male and female?
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+# Count each gender
+gender_counts <- table(df$gender)
+
+# Convert to percentages
+gender_percent <- prop.table(gender_counts) * 100
+
+gender_percent
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+What percentage of students passed the exams?
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+# Percentage of students who passed
+pass_percent <- mean(df$pass) * 100
+
+pass_percent
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+What is the performance range for maths?
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+range(df$maths)
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---

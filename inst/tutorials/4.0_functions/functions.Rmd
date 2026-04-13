@@ -1,0 +1,317 @@
+---
+title: "Fundamentals of R"
+subtitle: "Functions"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Inbuilt and User defined Functions in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+A function in R is a block of code that performs certain tasks and can only run when it is called. Functions are normally created and stored into libraries. In this session, we will learn about the following: -
+
+      1. Built on functions.
+      2. User defined functions.
+      
+## Built in Functions
+
+These are functions that can be found in the default R work-space. They come with the R and RStudio ecosystem and can be accessed without installing any libraries. Some of the built functions in R are `mean`, `mode`,`median`, `sum` and many more, The code chunks below will show some of the built in functions.
+
+**Absolute Value**
+
+```{r}
+# get the absolute value of a number
+abs(-10)
+```
+
+**Sum Numbers**
+
+```{r}
+# sum of 10 numbers
+# initialize the sum
+total = 0 
+# loop through 10 numbers and sum them
+for (i in 1:10) {
+  total = total + i
+}
+
+# print the total
+cat(total)
+```
+
+**Logarithm Of a Number**
+
+```{r}
+# Logarithm of a number
+log(2)
+```
+
+**Split a String by space**
+
+```{r}
+# Split a string by space
+
+# define the string
+name = "James clinton"
+
+# split the string by space
+strsplit(name, " ")
+```
+
+**Calculate Average of Numbers**
+
+```{r}
+# the mean of 2 numbers
+mean(c(1,3))
+```
+
+## User Defined Functions
+
+These a functions created by the user to perform specific tasks. They are mainly created so they can be re-used.
+
+**Function with arguments**
+
+```{r}
+# defining the function
+Hello <- function(name){
+  cat(paste0("Hello, ", name))
+}
+
+# test case 1
+Hello("clinton")
+
+# test case 2
+Hello("James Peter")
+```
+
+**Function without arguments**
+
+```{r}
+# defining the function
+Hello2 <- function(){
+  cat("Hello, Clinton")
+}
+
+# test case 1
+Hello2()
+```
+
+**Function with default arguments**
+
+```{r}
+## Function with default arguments
+# defining the function
+Hello3 <- function(name = "Clinton Moshe"){
+  cat(paste0("\nHello, ", name))
+}
+
+# test case 1
+Hello3()
+
+# test case 2
+Hello3("John Doe")
+```
+
+*NOTE: IF YOU WANT THE FUNCTION TO RETURN A VALUE,USE THE RETURN STATEMENT AS ILLUSTRATED BELOW*
+
+**The function will return the sum of 20 numbers.**
+
+```{r}
+# defining the number
+sum_20 <- function(){
+  # initialize the total
+  tot = 0
+  # loop through 20 numbers and sum
+  for (i in 1:20) {
+    tot = tot + i
+  }
+  # return the value
+  return(tot)
+}
+
+# calling the function
+sum_20()
+```
+
+---
+
+## Exercises
+
+### Exercise 1
+
+Create a function that will print the first name, last name and age of a person.
+
+```{r exercise1, exercise=TRUE}
+# your code here
+```
+
+```{r exercise1-solution}
+printDetails = function(fname, lname, age){
+  cat(c(fname, lname, age))
+}
+
+printDetails("Clinton","Moshe",20)
+```
+
+```{r exercise1-check}
+grade_code()
+```
+
+---
+
+### Exercise 2
+
+Recreate the function from *Exercise 1* and supply default values for the first name, last name and the age. Print the default values to the console.
+
+```{r exercise2, exercise=TRUE}
+# your code here
+```
+
+```{r exercise2-solution}
+printDetails = function(fname="fname", lname="lname", age=10){
+  cat(c(fname, lname, age))
+}
+
+printDetails()
+```
+
+```{r exercise2-check}
+grade_code()
+```
+
+---
+
+### Exercise 3
+
+Recreate the function from *Exercise 1* and supply default values for the first name, last name and the age. Print the default values to the console.
+
+```{r exercise3, exercise=TRUE}
+# your code here
+```
+
+```{r exercise3-solution}
+printDetails = function(fname="fname", lname="lname", age=10){
+  cat(c(fname, lname, age))
+}
+
+printDetails()
+```
+
+```{r exercise3-check}
+grade_code()
+```
+
+---
+
+### Exercise 4
+
+Create a function, *sample_num*, that will sample 20 numbers from 100 Then calculate the mean of those numbers. 
+
+*(DO NOT USE THE BUILD IN MEAN FUNCTION)*
+
+```{r exercise4, exercise=TRUE}
+# your code here
+```
+
+```{r exercise4-solution}
+sample_num = function(){
+  # set a seed to generate the same nums every time
+  set.seed(100)
+  # sample 20 numbers
+  nums = sample(1:100, 20)
+  
+  # initialize the total
+  tot = 0
+  # loop through 20 numbers and sum
+  for (i in nums) {
+    tot = tot + i
+  }
+  
+  # calculate average
+  avg = tot / length(nums)
+  
+  cat(nums, "\n")
+  cat(paste0("Avg: ", avg))
+}
+
+sample_num()
+```
+
+```{r exercise4-check}
+grade_code()
+```
+
+---
+
+### Exercise 5
+
+Write a function, *sum_n*, that will accept the number, *n*. The function should return the sum of those numbers.
+
+What is the sum of the first 20 numbers?
+
+```{r exercise5, exercise=TRUE}
+# your code here
+```
+
+```{r exercise5-solution}
+sum_n = function(n){
+  # initialize the total
+  tot = 0
+  # loop through n numbers and sum
+  for (i in 1:n) {
+    tot = tot + i
+  }
+  # return the value
+  return(tot)
+}
+
+sum_n(20)
+```
+
+```{r exercise5-check}
+grade_code()
+```
+
+---
+
+### Exercise 6
+
+What is the sum of the first 100 numbers?
+
+```{r exercise6, exercise=TRUE}
+# your code here
+```
+
+```{r exercise6-solution}
+sum_n = function(n){
+  # initialize the total
+  tot = 0
+  # loop through n numbers and sum
+  for (i in 1:n) {
+    tot = tot + i
+  }
+  # return the value
+  return(tot)
+}
+
+sum_n(100)
+```
+
+```{r exercise6-check}
+grade_code()
+```
+
+---

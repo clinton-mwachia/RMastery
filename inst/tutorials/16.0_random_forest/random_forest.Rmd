@@ -1,0 +1,289 @@
+---
+title: "Fundamentals of R"
+subtitle: "Random Forest"
+author: "Prepared By Clinton Moshe Mwachia"
+description: "Fitting a Random Forest Model in R"
+date: "`r Sys.Date()`"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+# loading libraries
+library(tidyverse)
+library(mice) # missing data imputation
+library(viridis) # fill plots with colors
+library(caret) # data splitting
+library(randomForest)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Random Forest is a powerful machine learning algorithm that combines the predictions of multiple decision trees to improve accuracy and robustness. 
+
+In this lesson, we will explore how to implement machine learning using Random Forest in R, using the Titanic dataset as an example. 
+
+We will cover the entire process, including data loading, cleaning, visualization, splitting, model training, evaluation, and making predictions.
+
+## The Data
+
+The sinking of the Titanic is one of the most infamous shipwrecks in history.
+
+On April 15, 1912, during her maiden voyage, the widely considered "unsinkable" RMS Titanic sank after colliding with an iceberg. Unfortunately, there weren't enough lifeboats for everyone onboard, resulting in the death of 1502 out of 2224 passengers and crew.
+
+While there was some element of luck involved in surviving, it seems some groups of people were more likely to survive than others.
+
+In this challenge, we will build a predictive model that answers the question: "what sorts of people were more likely to survive?" using passenger data (ie name, age, gender, socio-economic class, etc). We will use the titanic dataset in this lesson, you can learn more from the kaggle website.
+
+## Data Loading
+
+The dataset consists of the train and test datasets. We will use the training dataset to train and test our model and the best model will be used to make final predictions using the test set.
+
+
+```{r data-loading}
+setwd("F:/R/RMastery/inst/tutorials/random_forest")
+# loading the train data
+train = read.csv("data/train.csv")
+
+# subset columns you need
+train_updated = train %>%
+  select(-c(PassengerId, Name, SibSp, Parch, Ticket, Cabin, Embarked))
+
+# data summary
+summary(train_updated)
+
+# na count
+colSums(is.na(train_updated))
+```
+
+## Data Cleaning
+
+**Missing Data**
+
+```{r handle-na}
+# define the imputation model
+imp_model <- mice(train_updated, method = "pmm", m = 5)
+
+# get complete data
+imputed_data <- complete(imp_model)
+
+colSums(is.na(imputed_data))
+```
+
+**Data Types**
+
+The data types of all variables are wrongly labeled except for Age and Fare. We will convert the data types of Survived, PClass and Sex into factors.
+
+```{r data-types}
+# converting data types to factors
+imputed_data = imputed_data %>%
+  mutate(
+    Survived = as.factor(Survived),
+    Pclass = as.factor(Pclass),
+    Sex = as.factor(Sex)
+  )
+
+
+# data summary
+summary(imputed_data)
+```
+
+## Exploratory Data Analysis
+
+**Survival rate by passenger class**
+
+```{r surv-by-pclass}
+imputed_data %>%
+  mutate(
+    Survived = ifelse(Survived == 0, "No", "Yes"),
+    Pclass = ifelse(Pclass == 1, "Upper", 
+                    ifelse(Pclass == 2, "Middle", "Lower"))
+  ) %>%
+  ggplot(aes(x = Pclass, fill = Survived)) +
+  geom_bar(position = "dodge") +
+  scale_fill_viridis(discrete = T) +
+  labs(title = "Survival rate by passenger class",
+       subtitle = "Data Source: Kaggle Titanic dataset",
+       x = "Passenger class",
+       y = "Survival rate",
+       fill = "Survived") +
+  theme_bw()
+
+```
+
+**Comment:** This plot shows the survival rate for passengers in each class. As you can see, passengers in first class had the highest survival rate, followed by passengers in second class. Passengers in third class had the lowest survival rate.
+
+**Age Distribution of Survivors**
+
+```{r survivors-age-dist}
+imputed_data %>%
+  mutate(
+    Survived = ifelse(Survived == 0, "No", "Yes")
+  ) %>%
+  filter(Survived == "Yes") %>%
+  ggplot(aes(x = Age)) +
+  geom_histogram(binwidth = 10) +
+  labs(title = "Age Distribution of Survivors",
+       x = "Age",
+       y = "Number of Survivors") +
+  theme_bw()
+```
+
+**Comment:** This plot shows the age distribution of survivors. As you can see, there were more survivors in the younger age groups. This is likely because children and young adults were more likely to be given priority for lifeboats.
+
+**Fare Paid by Passenger Class**
+
+```{r fare-by-pclass}
+imputed_data %>%
+  mutate(
+    Pclass = ifelse(Pclass == 1, "Upper", 
+                    ifelse(Pclass == 2, "Middle", "Lower"))
+  ) %>%
+  ggplot(aes(x = Pclass, y = Fare)) +
+  geom_boxplot() +
+  labs(title = "Fare Paid by Passenger Class",
+       x = "Passenger Class",
+       y = "Fare") +
+  theme_bw()
+```
+
+**Comment:** This plot shows the distribution of fare paid by passenger class. As you can see, passengers in first class paid the highest fares, followed by passengers in second class. Passengers in third class paid the lowest fares.
+
+**Survival Rate by Sex**
+
+```{r surv-by-sex}
+imputed_data %>%
+  mutate(
+    Survived = ifelse(Survived == 0, "No", "Yes")
+  ) %>%
+  ggplot(aes(x = Sex, fill = Survived)) +
+  geom_bar(position = "dodge") +
+  scale_fill_viridis(discrete = T) +
+  labs(title = "Survival Rate by Sex",
+       x = "Sex",
+       y = "Survival Rate",
+       fill = "Survived") +
+  theme_bw()
+```
+
+**Comment:** This plot shows the survival rate for passengers by sex. As you can see, female passengers had a higher survival rate than male passengers. This is likely because women and children were more likely to be given priority for lifeboats.
+
+**Survival Rate by Age and Sex**
+
+```{r surv-age-sex}
+imputed_data %>%
+  mutate(
+    Survived = ifelse(Survived == 0, "No", "Yes")
+  ) %>%
+  ggplot(aes(x = Age, fill = Survived)) +
+  geom_density(alpha = 0.2) +
+  facet_wrap(~Sex) +
+  labs(title = "Survival Rate by Age and Sex",
+       x = "Age",
+       y = "Density",
+       fill = "Survived")
+
+```
+
+**Comment:** This plot shows the survival rate for passengers by age and sex. As you can see, female passengers had a higher survival rate than male passengers at all ages. However, the survival rate for female passengers was particularly high in the younger age groups.
+
+## Modelling
+
+**Splitting the Data**
+
+We will split the data into: -
+
+      1. Training Data (80%).
+      2. Validation Data (20%).
+      
+```{r data-splitting}
+# splitting index
+index = createDataPartition(imputed_data$Survived, p=0.8, list = FALSE)
+
+# training data
+training = imputed_data[index,]
+
+# validation data
+validation = imputed_data[-index,]
+```
+
+**Fitting Base model**
+
+```{r base-model}
+# Random Forest model training
+model <- randomForest(Survived ~ ., data = training, importance=TRUE)
+
+# model summary
+model
+```
+
+**Predictions and Evaluation**
+
+```{r pred}
+# predictions
+pred = predict(model, newdata = validation, type = "response")
+
+# confusion matrix
+mt = table(validation$Survived,pred)
+
+confusionMatrix(mt)
+```
+
+The base model achieved an accuracy of `r confusionMatrix(mt)$overall[['Accuracy']]`.
+
+**Model Variable Importance**
+
+To visualize the variable importance in a Random Forest model, you can use the `varImpPlot()` function from the `randomForest` package in R. This function provides a graphical representation of the importance of each variable in the model.
+
+```{r var-imp}
+varImpPlot(model)
+```
+
+The `varImpPlot()` function generates a plot that displays the variable importance scores, typically represented by the Mean Decrease Accuracy or Mean Decrease Gini. The higher the score, the more important the variable is for the model's performance. The plot helps identify the most influential variables in the Random Forest model.
+
+It's worth noting that variable importance is based on how much a variable contributes to the model's performance in terms of predictive accuracy or Gini impurity. It does not indicate the direction or nature of the relationship between the variables and the target variable. If you need to understand the relationship or directionality, you may consider additional analysis or visualizations specific to the variables of interest.
+
+CONGRATULATIONS ON FINISHING YOUR LESSON, PLEASE PROCEED TO THE ASSIGNMENT.
+
+## Assignment
+
+FIT TWO OTHER RANDOM FOREST MODELS USING DIFFERENT APPROACHES. YOUR TWO MODELS SHOULD BE BETTER THAN THE MODELS WE HAVE ALREADY FITTED. 
+
+1. CREATE A NEW RMD FILE.
+2. NAME IT `Random-Forest-Assignment.Rmd`.
+3. COMPLETE THE TASK PROVIDED ABOVE.
+4. KNIT TO HTML.
+
+**TIPS:**
+
+1. Evaluation Metrics:
+Start by evaluating the model's performance using appropriate metrics. Common evaluation metrics for classification tasks include accuracy, precision, recall, F1 score, and area under the ROC curve (AUC-ROC). For regression tasks, metrics like mean squared error (MSE), root mean squared error (RMSE), and R-squared can be used. Assess the model's performance based on these metrics.
+
+2. Cross-Validation:
+Perform cross-validation to assess the model's performance on multiple subsets of the data. Cross-validation helps estimate the model's generalization ability and detect overfitting. Common techniques include k-fold cross-validation and stratified cross-validation. Consider using cross-validation to validate the model's performance and fine-tune its hyperparameters.
+
+3. Hyperparameter Tuning:
+Random Forest models have various hyperparameters that can be tuned to optimize performance. Some important hyperparameters include the number of trees (`ntree`), the number of variables considered at each split (`mtry`), and the depth of the trees (`max.depth`). Use techniques like grid search or random search to explore different combinations of hyperparameters and select the ones that yield the best performance.
+
+4. Feature Selection:
+Explore feature importance to identify the most influential variables in the model. You can use the `importance()` function in R to extract variable importance measures. Consider removing or adding variables based on their importance scores. Removing irrelevant or low-importance features can simplify the model and reduce overfitting, while adding important features that were not initially included can improve model performance.
+
+5. Ensembling and Bagging:
+Random Forest models already employ ensembling techniques by combining multiple decision trees. However, you can further enhance performance by using techniques like bagging or boosting. Bagging involves training multiple Random Forest models on different subsets of the data and aggregating their predictions. Boosting iteratively trains models on weighted versions of the data, with more emphasis on the misclassified samples. These techniques can help improve accuracy and reduce overfitting.
+
+6. Handling Imbalanced Data:
+If you have imbalanced data, where the distribution of classes is unequal, consider techniques like oversampling the minority class or undersampling the majority class. This can help address the class imbalance issue and improve the model's ability to predict the minority class accurately.
+
+7. Model Stacking:
+Consider combining the predictions from multiple models, including Random Forest, to improve overall performance. Model stacking involves training multiple models and using their predictions as input to a higher-level model. This technique can help capture diverse patterns and improve predictive accuracy.
+
+8. Regularization:
+Random Forest models are generally less prone to overfitting, but regularization techniques like limiting tree depth or reducing the number of variables considered at each split can further enhance model performance. Experiment with different regularization approaches to strike a balance between complexity and performance.
+
+By following these steps, you can evaluate the Random Forest model's performance, optimize hyperparameters, select important features, handle imbalanced data, and explore ensemble techniques to improve overall model accuracy and generalization. It's important to iterate and experiment with various strategies while monitoring the model's performance on validation data or through cross-validation to ensure effective model improvement.
