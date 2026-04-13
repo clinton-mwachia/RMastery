@@ -32,7 +32,6 @@ Install from GitHub:
 install.packages("pak")
 pak::pak("clinton-mwachia/RMastery")
 ```
-```
 
 ## 🚀 Getting Started
 
@@ -40,6 +39,9 @@ Launch your first lesson:
 
 ```r
 library(RMastery)
+
+# start your learning jouney
+start_learning()
 
 # browse available tutorials
 list_tutorials()
@@ -71,6 +73,7 @@ Each lesson includes:
 ```r
 library(RMastery)
 
+# compile the package
 build_and_list()
 
 # lauch a given lesson
