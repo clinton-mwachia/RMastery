@@ -61,23 +61,24 @@ ggplot(mtcars, aes(x = mpg, y = hp)) +
 
 The scatter plot shows the relationship between horsepower and miles per gallon for different car models. We can observe that as mpg increases, horsepower tends to decrease.
 
-## Box-Plot with Regression Line**
+## Bar Plot
 
-```{r scatter-plot-reg}
-# Scatter plot
-ggplot(mtcars, aes(x = wt, y = hp)) +
-  geom_point() +
-  geom_smooth(method = "lm") + # add a line to show trend
-  labs(x = "Weight", y = "Horsepower") +
-  ggtitle("Scatter Plot: Horsepower vs. Weight") +
-  theme_bw()
+A bar plot represents the frequency or count of categorical variables. Let's create a bar plot of the number of cars based on their number of cylinders.
+
+```{r bar-plot}
+# Bar plot
+ggplot(mtcars, aes(x = factor(cyl))) +
+  geom_bar() +
+  labs(x = "Number of Cylinders", y = "Count") +
+  ggtitle("Bar Plot: Number of Cars by Cylinders") +
+  theme_classic()
 ```
 
 **Interpretation**
 
-The scatter plot shows the relationship between car weight and horsepower, along with a regression line. We can observe the general trend that as weight increases, horsepower also tends to increase.
+The bar plot illustrates the count of cars based on the number of cylinders. We can see that the dataset contains a higher number of cars with 4 and 8 cylinders.
 
-## Bar Plot with Grouping
+**Bar Plot with Grouping**
 
 A bar plot with grouping allows comparison of a numeric variable across different categories. Let's create a grouped bar plot to compare average miles per gallon for different numbers of cylinders and gears.
 
@@ -101,22 +102,6 @@ ggplot(mtcars_grouped, aes(x = cyl, y = mpg, fill = gear)) +
 
 The grouped bar plot compares the average miles per gallon for different numbers of cylinders and gears. We can observe the variations in MPG values based on both cylinder count and gear type.
 
-## Bar Plot
-
-A bar plot represents the frequency or count of categorical variables. Let's create a bar plot of the number of cars based on their number of cylinders.
-
-```{r bar-plot}
-# Bar plot
-ggplot(mtcars, aes(x = factor(cyl))) +
-  geom_bar() +
-  labs(x = "Number of Cylinders", y = "Count") +
-  ggtitle("Bar Plot: Number of Cars by Cylinders") +
-  theme_classic()
-```
-
-**Interpretation**
-
-The bar plot illustrates the count of cars based on the number of cylinders. We can see that the dataset contains a higher number of cars with 4 and 8 cylinders.
 
 ## Histogram
 
@@ -151,6 +136,23 @@ ggplot(mtcars, aes(x = factor(gear), y = mpg)) +
 **Interpretation**
 
 The box plot displays the distribution of miles per gallon based on the number of gears. We can see the median, quartiles, and any outliers for each gear type.
+
+**Box-Plot with Regression Line**
+
+```{r scatter-plot-reg}
+# Scatter plot
+ggplot(mtcars, aes(x = wt, y = hp)) +
+  geom_point() +
+  geom_smooth(method = "lm") + # add a line to show trend
+  labs(x = "Weight", y = "Horsepower") +
+  ggtitle("Scatter Plot: Horsepower vs. Weight") +
+  theme_bw()
+```
+
+**Interpretation**
+
+The plot shows the relationship between car weight and horsepower, along with a regression line. We can observe the general trend that as weight increases, horsepower also tends to increase.
+
 
 ## Line Plot
 
@@ -240,7 +242,7 @@ region = c("Kenya", "Uganda", "Tanzania", "United States", "China", "India"),
 population = c(55, 48, 67, 331, 1440, 1390)
 ```
 
-```{r exercise1, exercise=TRUE}
+```{r exercise2, exercise=TRUE}
 # your code here
 ```
 
