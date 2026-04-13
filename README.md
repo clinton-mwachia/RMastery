@@ -69,6 +69,8 @@ Each lesson includes:
 ## How to Run A Lesson Locally during dev
 
 ```r
+library(RMastery)
+
 build_and_list()
 
 # lauch a given lesson
