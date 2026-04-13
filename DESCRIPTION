@@ -1,7 +1,7 @@
 Package: RMastery
 Type: Package
 Title: Interactive R Learning Platform with Tutorials and Exercises
-Version: 0.4.10
+Version: 0.4.11
 Authors@R: 
     person("Clinton", "Moshe", email="clintonmwachia9@gmail.com", role=c("aut", "cre"))
 Description: 
@@ -16,7 +16,12 @@ Depends:
 Imports: 
     learnr,
     gradethis,
-    swirl,
+    ggplot2,
+    dplyr,
+    magrittr,
+    plotly,
+    naniar,
+    maps,
     utils
 Suggests: 
     knitr,
