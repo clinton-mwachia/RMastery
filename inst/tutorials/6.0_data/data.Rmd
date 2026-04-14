@@ -49,19 +49,19 @@ After loading the data, you can perform various operations to available datasets
 
 **View The first 4 rows of `cars` dataset**
 
-```{r}
+```{r head-cars}
 head(cars, 4)
 ```
 
 **View The last 4 rows of `cars` dataset**
 
-```{r}
+```{r tail-cars}
 tail(cars, 4)
 ```
 
 **Get summary statistics of `cars` dataset**
 
-```{r}
+```{r summary-cars}
 summary(cars)
 ```
 
@@ -77,7 +77,7 @@ In this section, we will cover the concept of the working directory in R and exp
 
 To check the current working directory in R, you can use `getwd()` function. This function returns the path to the current working directory as a character string.
 
-```{r}
+```{r working-directory}
 # get current working directory
 getwd()
 ```
@@ -95,7 +95,7 @@ This function takes a path to the desired directory as an argument and sets it a
 
 **List Files in working directory**
 
-```{r}
+```{r list-files}
 list.files()
 ```
 
@@ -115,7 +115,7 @@ The datasets can be created using the data structures we learned in the `data st
 4.  Lists.
 5.  Factors.
 
-```{r}
+```{r writing-data}
 # create the dataset
 data = data.frame(
   name=c("James", "Sydney", "Esther"),
@@ -123,7 +123,7 @@ data = data.frame(
   gender = c("M","M","F"))
 
 # to write the data in the current folder, we have to change the working directory
-setwd("F:/R/RMastery/inst/tutorials/data")
+#setwd("F:/R/RMastery/inst/tutorials/data")
 
 # create the `data` folder
 dir.create("data")

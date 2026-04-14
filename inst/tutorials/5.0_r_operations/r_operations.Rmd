@@ -41,42 +41,42 @@ These operators are used to perform mathematical operations such as addition, su
 
 **Addition**
 
-```{r}
+```{r addition}
 # adding two numbers
 2 + 100
 ```
 
 **Subtraction**
 
-```{r}
+```{r subtraction}
 # subtracting two numbers
 2000 - 100
 ```
 
 **Multiplication**
 
-```{r}
+```{r multiplication}
 # multiplying two numbers
 44 * 90
 ```
 
 **Division**
 
-```{r}
+```{r division}
 # dividing two numbers
 1000 / 20
 ```
 
 **Exponentiation**
 
-```{r}
+```{r exponentiation}
 # exponentiation
 2^3
 ```
 
 **Modulus**
 
-```{r}
+```{r modulus}
 # modulus
 100 %% 2
 # remainder?
@@ -89,7 +89,7 @@ The assignment operator is used to assign values to variables. You can use eithe
 
 **Using An Equal Sign** 
 
-```{r}
+```{r equal-to}
 # using an equal sign
 x = 10
 ```
@@ -98,7 +98,7 @@ THE VALUE OF X IS `r x`
 
 **Using A leftward arrow** 
 
-```{r}
+```{r assignment-operator}
 # using an equal sign
 x <- 20
 ```
@@ -111,37 +111,37 @@ These operators are used to compare values. They will always return a Boolean va
 
 **Equal to**
 
-```{r}
+```{r equal-equal-to}
 10 == 15
 ```
 
 **Not Equal to**
 
-```{r}
+```{r not-equal-to}
 20 != 15
 ```
 
 **Less Than or Equal to**
 
-```{r}
+```{r less-than-or-equal-to}
 2 <= 15
 ```
 
 **Greater Than or Equal to**
 
-```{r}
+```{r greater-than-or-equal-to}
 20 >= 15
 ```
 
 **Less Than**
 
-```{r}
+```{r less-than}
 100 < 150
 ```
 
 **Greater Than**
 
-```{r}
+```{r greater-than}
 100 > 1020
 ```
 
@@ -151,7 +151,7 @@ Logical operators are used to perform logical operations.
 
 **Logical AND Operator**
 
-```{r}
+```{r logical-and}
 TRUE & TRUE
 
 TRUE & FALSE
@@ -159,7 +159,7 @@ TRUE & FALSE
 
 **Logical OR Operator**
 
-```{r}
+```{r logical-or}
 TRUE | TRUE
 
 TRUE | FALSE
@@ -167,7 +167,7 @@ TRUE | FALSE
 
 **Logical NOT Operator**
 
-```{r}
+```{r logical-not}
 !TRUE
 
 !(2==5)
@@ -177,7 +177,7 @@ TRUE | FALSE
 
 This operator is used to combine variables into a vector.
 
-```{r}
+```{r concatenation}
 y = c(1,2,3)
 
 y

@@ -47,7 +47,7 @@ The dataset consists of the train and test datasets. We will use the training da
 
 
 ```{r data-loading}
-setwd("F:/R/RMastery/inst/tutorials/random_forest")
+#setwd("F:/R/RMastery/inst/tutorials/random_forest")
 # loading the train data
 train = read.csv("data/train.csv")
 

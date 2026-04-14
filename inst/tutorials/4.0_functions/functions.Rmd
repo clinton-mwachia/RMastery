@@ -32,14 +32,14 @@ These are functions that can be found in the default R work-space. They come wit
 
 **Absolute Value**
 
-```{r}
+```{r absolute-values}
 # get the absolute value of a number
 abs(-10)
 ```
 
 **Sum Numbers**
 
-```{r}
+```{r sum-fn}
 # sum of 10 numbers
 # initialize the sum
 total = 0 
@@ -54,14 +54,14 @@ cat(total)
 
 **Logarithm Of a Number**
 
-```{r}
+```{r logarithm}
 # Logarithm of a number
 log(2)
 ```
 
 **Split a String by space**
 
-```{r}
+```{r split-string}
 # Split a string by space
 
 # define the string
@@ -73,7 +73,7 @@ strsplit(name, " ")
 
 **Calculate Average of Numbers**
 
-```{r}
+```{r average}
 # the mean of 2 numbers
 mean(c(1,3))
 ```
@@ -84,7 +84,7 @@ These a functions created by the user to perform specific tasks. They are mainly
 
 **Function with arguments**
 
-```{r}
+```{r user-fn-with-arguments}
 # defining the function
 Hello <- function(name){
   cat(paste0("Hello, ", name))
@@ -99,7 +99,7 @@ Hello("James Peter")
 
 **Function without arguments**
 
-```{r}
+```{r user-fn-without-arguments}
 # defining the function
 Hello2 <- function(){
   cat("Hello, Clinton")
@@ -111,7 +111,7 @@ Hello2()
 
 **Function with default arguments**
 
-```{r}
+```{r user-fn-with-default-arguments}
 ## Function with default arguments
 # defining the function
 Hello3 <- function(name = "Clinton Moshe"){
@@ -129,7 +129,7 @@ Hello3("John Doe")
 
 **The function will return the sum of 20 numbers.**
 
-```{r}
+```{r sum-of-20-numbers-fn}
 # defining the number
 sum_20 <- function(){
   # initialize the total

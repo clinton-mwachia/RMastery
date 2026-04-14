@@ -36,7 +36,7 @@ The lesson aims to predict the sale price of a house using other features provid
 The lesson uses the `House Prices - Advanced Regression Techniques` data obtained from **Kaggle** website. The data is split into train set, used for training the model and test set, used for testing the model.
 
 ```{r data-loading}
-setwd("F:/R/RMastery/inst/tutorials/linear_regression")
+#setwd("F:/R/RMastery/inst/tutorials/linear_regression")
 # loading the training data
 train = read.csv("data/train.csv")
 
@@ -178,7 +178,7 @@ imputed_data %>%
 
 **Data Splitting**
 
-```{r}
+```{r data-split}
 # split index
 # 80% train data, 20% test data
 index = createDataPartition(imputed_data$SalePrice, p=0.8,list = FALSE)
@@ -202,14 +202,14 @@ summary(lm)
 
 **Model Plots**
 
-```{r}
+```{r model-plots}
 par(mfrow=c(2,2))
 plot(lm)
 ```
 
 **Making Predictions**
 
-```{r}
+```{r predictions}
 # making the predictions
 pred = predict(lm, newdata = test_data)
 
@@ -229,7 +229,7 @@ It's important to note that the notion of a "good" RMSE value is relative and ca
 
 **Data Splitting**
 
-```{r}
+```{r data-split-model2}
 # scalling the data
 scaled_data = imputed_data %>%
   select(-SalePrice) %>%
@@ -262,14 +262,14 @@ summary(lm2)
 
 **Model Plots**
 
-```{r}
+```{r model-plots2}
 par(mfrow=c(2,2))
 plot(lm2)
 ```
 
 **Predictions**
 
-```{r}
+```{r predictions-model2}
 # making the predictions
 pred2 = predict(lm2, newdata = test_scaled_data)
 
@@ -289,7 +289,7 @@ MODEL 2 HAS A MUCH LOWER RMSE COMPARED TO MODEL 1. WE WILL USE MODEL 2 FOR PREDI
 
 ## Final Model Predictions
 
-```{r}
+```{r final-model-predictions}
 # loading the test data
 test = read.csv("data/test.csv")
 

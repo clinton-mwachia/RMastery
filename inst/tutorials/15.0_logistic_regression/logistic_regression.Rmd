@@ -206,7 +206,7 @@ validation = imputed_data[-index,]
 
 **Fitting Base model**
 
-```{r}
+```{r fitting-base-model}
 # the model
 model = glm(Survived~., data = training, family = binomial(link="logit"))
 
