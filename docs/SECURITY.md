@@ -10,7 +10,8 @@
 
 If you discover a security vulnerability in this package, please report
 it responsibly by opening a private issue or contacting the maintainer
-directly via email at **<clintonmwachia9@gmail.com>**.
+directly via email at
+[**clintonmwachia9@gmail.com**](mailto:clintonmwachia9@gmail.com).
 
 When reporting, include:
 

@@ -1,43 +1,36 @@
-# 🚀 RMastery
+# RMastery
 
-> Learn R by doing — interactive, practical, powerful.
+> Learn R by doing - interactive, practical, powerful.
 
-RMastery is a powerful **interactive R learning platform** built as an R package.
-It helps you learn R step-by-step using **hands-on tutorials, exercises, and instant feedback**.
+RMastery is a powerful **interactive R learning platform** built as an R package. It helps you learn R step-by-step using **hands-on tutorials, exercises, and instant feedback**.
 
----
+## Features
 
-## ✨ Features
+-   **Interactive Tutorials** – Learn concepts with guided lessons
+-   **Hands-on Exercises** – Practice as you learn
+-   **Instant Feedback** – Get real-time grading with explanations
+-   **Structured Curriculum** – Beginner → Intermediate → Advanced
+-   **Real-world Examples** – Work with practical datasets
 
-* 📘 **Interactive Tutorials** – Learn concepts with guided lessons
-* 💻 **Hands-on Exercises** – Practice as you learn
-* ⚡ **Instant Feedback** – Get real-time grading with explanations
-* 🧠 **Structured Curriculum** – Beginner → Intermediate → Advanced
-* 📊 **Real-world Examples** – Work with practical datasets
+## Built With
 
----
+-   `learnr` – Interactive tutorials
+-   `gradethis` – Automatic grading and feedback
 
-## 🧱 Built With
-
-* `learnr` – Interactive tutorials
-* `gradethis` – Automatic grading and feedback
-
----
-
-## 📦 Installation
+## Installation
 
 Install from GitHub:
 
-```r
+``` r
 install.packages("pak")
 pak::pak("clinton-mwachia/RMastery")
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 Launch your first lesson:
 
-```r
+``` r
 library(RMastery)
 
 # start your learning jouney
@@ -49,27 +42,23 @@ list_tutorials()
 # lauch a given lesson
 load_tutorial(tutorial = "data")
 ```
----
 
-## 📚 Course Structure
+## Course Structure
 
-* Variables & Data Types
-* Vectors
-* Data Frames
-
----
+-   Variables & Data Types
+-   Vectors
+-   Data Frames
 
 Each lesson includes:
 
-* 📖 Explanation
-* 💻 Interactive coding
-* ✅ Instant geedbackm
-*    hints
+-   Explanation
+-   Interactive coding
+-   Instant feedback
+-   Hints
 
----
-## 📁 Project Structure
+## Project Structure
 
-```
+```         
 RMastery/
 ├── R/
 ├── inst/
@@ -82,60 +71,46 @@ RMastery/
 └── README.md
 ```
 
----
-
-## 🎯 Goals
+## Goals
 
 RMastery aims to:
 
-* Make R learning **interactive and practical**
-* Replace passive tutorials with **hands-on experience**
-* Provide a **complete learning path** in one package
+-   Make R learning **interactive and practical**
+-   Replace passive tutorials with **hands-on experience**
+-   Provide a **complete learning path** in one package
 
----
-
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!
 
 You can:
 
-* Add new lessons
-* Improve exercises
-* Fix bugs
-* Suggest features
+-   Add new lessons
+-   Improve exercises
+-   Fix bugs
+-   Suggest features
 
 Steps:
 
-1. Fork the repo
-2. Create a branch
-3. Make changes
-4. Submit a pull request
+1.  Fork the repo
+2.  Create a branch
+3.  Make changes
+4.  Submit a pull request
 
----
-
-## 📄 License
+## License
 
 MIT License
 
----
+## Author
 
-## 👨‍💻 Author
+Built with Love by [clinton-mwachia](https://github.com/clinton-mwachia)
 
-Built with ❤️ by [clinton-mwachia](https://github.com/clinton-mwachia)
-
----
-
-## ⭐ Support
+## Support
 
 If you like this project:
 
-* ⭐ Star the repo
-* 🍴 Fork it
-* 🧑‍💻 Contribute
-
----
+-   tar the repo
+-   Fork it
+-   Contribute
 
 > Learn R the right way — by doing.
-
----

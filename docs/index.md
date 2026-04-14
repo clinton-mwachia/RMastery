@@ -1,31 +1,25 @@
-# 🚀 RMastery
+# RMastery
 
-> Learn R by doing — interactive, practical, powerful.
+> Learn R by doing - interactive, practical, powerful.
 
 RMastery is a powerful **interactive R learning platform** built as an R
 package. It helps you learn R step-by-step using **hands-on tutorials,
 exercises, and instant feedback**.
 
-------------------------------------------------------------------------
+## Features
 
-## ✨ Features
+- **Interactive Tutorials** – Learn concepts with guided lessons
+- **Hands-on Exercises** – Practice as you learn
+- **Instant Feedback** – Get real-time grading with explanations
+- **Structured Curriculum** – Beginner → Intermediate → Advanced
+- **Real-world Examples** – Work with practical datasets
 
-- 📘 **Interactive Tutorials** – Learn concepts with guided lessons
-- 💻 **Hands-on Exercises** – Practice as you learn
-- ⚡ **Instant Feedback** – Get real-time grading with explanations
-- 🧠 **Structured Curriculum** – Beginner → Intermediate → Advanced
-- 📊 **Real-world Examples** – Work with practical datasets
-
-------------------------------------------------------------------------
-
-## 🧱 Built With
+## Built With
 
 - `learnr` – Interactive tutorials
 - `gradethis` – Automatic grading and feedback
 
-------------------------------------------------------------------------
-
-## 📦 Installation
+## Installation
 
 Install from GitHub:
 
@@ -34,7 +28,7 @@ install.packages("pak")
 pak::pak("clinton-mwachia/RMastery")
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 Launch your first lesson:
 
@@ -51,40 +45,20 @@ list_tutorials()
 load_tutorial(tutorial = "data")
 ```
 
-------------------------------------------------------------------------
-
-## 📚 Course Structure
+## Course Structure
 
 - Variables & Data Types
 - Vectors
 - Data Frames
 
-------------------------------------------------------------------------
-
 Each lesson includes:
 
-- 📖 Explanation
-- 💻 Interactive coding
-- ✅ Instant geedbackm
-- hints
+- Explanation
+- Interactive coding
+- Instant feedback
+- Hints
 
-------------------------------------------------------------------------
-
-## How to Run A Lesson Locally during dev
-
-``` r
-library(RMastery)
-
-# compile the package
-build_and_list()
-
-# lauch a given lesson
-load_tutorial(tutorial = "data")
-```
-
-------------------------------------------------------------------------
-
-## 📁 Project Structure
+## Project Structure
 
     RMastery/
     ├── R/
@@ -97,9 +71,7 @@ load_tutorial(tutorial = "data")
     ├── DESCRIPTION
     └── README.md
 
-------------------------------------------------------------------------
-
-## 🎯 Goals
+## Goals
 
 RMastery aims to:
 
@@ -107,9 +79,7 @@ RMastery aims to:
 - Replace passive tutorials with **hands-on experience**
 - Provide a **complete learning path** in one package
 
-------------------------------------------------------------------------
-
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!
 
@@ -127,30 +97,20 @@ Steps:
 3.  Make changes
 4.  Submit a pull request
 
-------------------------------------------------------------------------
-
-## 📄 License
+## License
 
 MIT License
 
-------------------------------------------------------------------------
+## Author
 
-## 👨‍💻 Author
+Built with Love by [clinton-mwachia](https://github.com/clinton-mwachia)
 
-Built with ❤️ to make learning R simple, interactive, and powerful.
-
-------------------------------------------------------------------------
-
-## ⭐ Support
+## Support
 
 If you like this project:
 
-- ⭐ Star the repo
-- 🍴 Fork it
-- 🧑‍💻 Contribute
-
-------------------------------------------------------------------------
+- tar the repo
+- Fork it
+- Contribute
 
 > Learn R the right way — by doing.
-
-------------------------------------------------------------------------
