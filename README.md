@@ -122,7 +122,7 @@ MIT License
 
 ## 👨‍💻 Author
 
-Built with ❤️ to make learning R simple, interactive, and powerful.
+Built with ❤️ by [clinton-mwachia](https://github.com/clinton-mwachia)
 
 ---
 
