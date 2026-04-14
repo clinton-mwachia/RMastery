@@ -1,5 +1,3 @@
-# RMastery
-
 > Learn R by doing - interactive, practical, powerful.
 
 RMastery is a powerful **interactive R learning platform** built as an R
@@ -13,6 +11,7 @@ exercises, and instant feedback**.
 - **Instant Feedback** – Get real-time grading with explanations
 - **Structured Curriculum** – Beginner → Intermediate → Advanced
 - **Real-world Examples** – Work with practical datasets
+- **Exams** – Full Exams
 
 ## Built With
 
