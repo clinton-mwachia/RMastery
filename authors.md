@@ -10,13 +10,13 @@ Source:
 [`DESCRIPTION`](https://github.com/clinton-mwachia/RMastery/blob/main/DESCRIPTION)
 
 Moshe C (2026). *RMastery: Interactive R Learning Platform with
-Tutorials and Exercises*. R package version 0.4.19,
+Tutorials and Exercises*. R package version 0.4.20,
 <https://github.com/clinton-mwachia/RMastery>.
 
     @Manual{,
       title = {RMastery: Interactive R Learning Platform with Tutorials and Exercises},
       author = {Clinton Moshe},
       year = {2026},
-      note = {R package version 0.4.19},
+      note = {R package version 0.4.20},
       url = {https://github.com/clinton-mwachia/RMastery},
     }
