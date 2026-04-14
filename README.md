@@ -67,20 +67,6 @@ Each lesson includes:
 *    hints
 
 ---
-
-## How to Run A Lesson Locally during dev
-
-```r
-library(RMastery)
-
-# compile the package
-build_and_list()
-
-# lauch a given lesson
-load_tutorial(tutorial = "data")
-```
----
-
 ## 📁 Project Structure
 
 ```
