@@ -14,10 +14,10 @@ Depends:
     R (>= 4.0)
 Imports: 
     learnr,
+    gradethis,
     devtools
 Suggests: 
     magrittr,
-    gradethis,
     ggplot2,
     knitr,
     rmarkdown,
