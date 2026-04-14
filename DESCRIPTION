@@ -12,11 +12,13 @@ Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 4.0)
+
 Imports: 
-    learnr,
-    gradethis,
-    devtools
+    learnr
+
 Suggests: 
+    gradethis,
+    devtools,
     magrittr,
     ggplot2,
     knitr,
@@ -31,6 +33,10 @@ Suggests:
     viridis,
     randomForest,
     testthat (>= 3.0.0)
+
+Remotes:
+    rstudio/gradethis
+
 VignetteBuilder: knitr
 RoxygenNote: 7.3.3
 URL: https://github.com/clinton-mwachia/RMastery, https://clinton-mwachia.github.io/RMastery/
