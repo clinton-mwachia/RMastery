@@ -23,6 +23,7 @@ exercises, and instant feedback**.
 Install from GitHub:
 
 ``` r
+
 install.packages("pak")
 pak::pak("clinton-mwachia/RMastery")
 ```
@@ -32,6 +33,7 @@ pak::pak("clinton-mwachia/RMastery")
 Launch your first lesson:
 
 ``` r
+
 library(RMastery)
 
 # start your learning jouney
