@@ -108,7 +108,7 @@ Built with Love by [clinton-mwachia](https://github.com/clinton-mwachia)
 
 If you like this project:
 
--   tar the repo
+-   Star the repo
 -   Fork it
 -   Contribute
 
