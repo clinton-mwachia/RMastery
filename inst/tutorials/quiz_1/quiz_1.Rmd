@@ -1,0 +1,420 @@
+---
+title: "RMastery Quiz 1"
+subtitle: "ASSESSMENT"
+author: "Prepared By Clinton Moshe Mwachia"
+date: "`r Sys.Date()`"
+description: "R Mastery Assessment"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(shiny)
+
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Section A
+
+### Question 1
+
+```{r q1, echo=FALSE}
+question(
+  "What is the standard assignment operator in R?",
+  answer("<-", correct = TRUE),
+  answer("="),
+  answer("->"),
+  answer(":="),
+  allow_retry = TRUE
+)
+```
+
+### Question 2
+
+```{r q2, echo=FALSE}
+question(
+  "Which function is used to combine elements into a vector or list?",
+  answer("c()", correct = TRUE),
+  answer("comb()"),
+  answer("v()"),
+  answer("concat()"),
+  allow_retry = TRUE
+)
+```
+
+### Question 3
+
+```{r q3, echo=FALSE}
+question(
+  "How do you install a new package from CRAN in R?",
+  answer("install.packages('packageName')", correct = TRUE),
+  answer("library(packageName)"),
+  answer("require(packageName)"),
+  answer("get.package('packageName')"),
+  allow_retry = TRUE
+)
+```
+
+### Question 4
+
+```{r q4, echo=FALSE}
+question(
+  "What data type is returned by the expression: 5 > 3?",
+  answer("logical", correct = TRUE),
+  answer("numeric"),
+  answer("character"),
+  answer("factor"),
+  allow_retry = TRUE
+)
+```
+
+### Question 5
+
+```{r q5, echo=FALSE}
+question(
+  "Which symbol starts a comment line in an R script?",
+  answer("#", correct = TRUE),
+  answer("//"),
+  answer("/*"),
+  answer("--"),
+  allow_retry = TRUE
+)
+```
+
+### Question 6
+
+```{r q6, echo=FALSE}
+question(
+  "What function would you use to view the first 6 rows of a dataframe?",
+  answer("head()", correct = TRUE),
+  answer("summary()"),
+  answer("str()"),
+  answer("view()"),
+  allow_retry = TRUE
+)
+```
+
+### Question 7
+
+```{r q7, echo=FALSE}
+question(
+  "What happens if you combine a character string and a number into a single vector using c('apple', 5)?",
+  answer("The number 5 is coerced into the character string '5'.", correct = TRUE),
+  answer("R throws a syntax error."),
+  answer("The character string is converted to NA."),
+  answer("R creates a list instead of a vector."),
+  allow_retry = TRUE
+)
+```
+
+### Question 8
+
+```{r q8, echo=FALSE}
+question(
+  "Which of the following functions provides a summary of an object's structure, including types and lengths?",
+  answer("str()", correct = TRUE),
+  answer("summary()"),
+  answer("attributes()"),
+  answer("dim()"),
+  allow_retry = TRUE
+)
+```
+
+### Question 9
+
+```{r q9, echo=FALSE}
+question(
+  "How do you access a specific column named 'Age' from a dataframe named 'df'?",
+  answer("df$Age", correct = TRUE),
+  answer("df[Age]"),
+  answer("df.Age"),
+  answer("df->Age"),
+  allow_retry = TRUE
+)
+```
+
+### Question 10
+
+```{r q10, echo=FALSE}
+question(
+  "What value does R use to represent missing or unavailable data?",
+  answer("NA", correct = TRUE),
+  answer("NULL"),
+  answer("NaN"),
+  answer("Inf"),
+  allow_retry = TRUE
+)
+```
+
+## Section B
+
+### Question 11
+
+```{r q11, echo=FALSE}
+question(
+  "What is the primary difference between a matrix and a data frame?",
+  answer("A matrix can only hold one data type, while a data frame can hold multiple types.", correct = TRUE),
+  answer("A data frame is always 1D, while a matrix is 2D."),
+  answer("A matrix can hold multiple data types, while a data frame is restricted to one."),
+  answer("There is no structural difference; they are alternative names."),
+  allow_retry = TRUE
+)
+```
+
+
+### Question 12
+
+```{r q12, echo=FALSE}
+question(
+  "Which function from the 'tidyverse' (dplyr) package is used to subset rows based on conditions?",
+  answer("filter()", correct = TRUE),
+  answer("select()"),
+  answer("mutate()"),
+  answer("arrange()"),
+  allow_retry = TRUE
+)
+```
+
+### Question 13
+
+```{r q13, echo=FALSE}
+question(
+  "What operator is used to forward an object into the first argument of the next function call in modern base R (version 4.1.0+)?",
+  answer("|>", correct = TRUE),
+  answer("%>%"),
+  answer("->"),
+  answer(">>"),
+  allow_retry = TRUE
+)
+```
+
+### Question 14
+
+```{r q14, echo=FALSE}
+question(
+  "What function would you use to change categorical character columns into statistical factors?",
+  answer("as.factor()", correct = TRUE),
+  answer("factorize()"),
+  answer("is.factor()"),
+  answer("to.factor()"),
+  allow_retry = TRUE
+)
+```
+
+### Question 15
+
+```{r q15, echo=FALSE}
+question(
+  "What is the output of the expression: matrix(1:4, nrow = 2) * matrix(1:4, nrow = 2)?",
+  answer("Element-wise multiplication of the matrices.", correct = TRUE),
+  answer("Standard matrix dot product multiplication."),
+  answer("An error message regarding non-conformable arrays."),
+  answer("The transpose of the original matrix."),
+  allow_retry = TRUE
+)
+```
+
+### Question 16
+
+```{r q16, echo=FALSE}
+question(
+  "Which base R function applies a function over margins of an array or matrix?",
+  answer("apply()", correct = TRUE),
+  answer("lapply()"),
+  answer("sapply()"),
+  answer("tapply()"),
+  allow_retry = TRUE
+)
+```
+
+### Question 17
+
+```{r q17, echo=FALSE}
+question(
+  "What does the function lapply() always return?",
+  answer("A list", correct = TRUE),
+  answer("A vector"),
+  answer("A matrix"),
+  answer("A data frame"),
+  allow_retry = TRUE
+)
+```
+
+### Question 18
+
+```{r q18, echo=FALSE}
+question(
+  "In ggplot2, which geometric function is used to create a scatter plot?",
+  answer("geom_point()", correct = TRUE),
+  answer("geom_line()"),
+  answer("geom_bar()"),
+  answer("geom_scatter()"),
+  allow_retry = TRUE
+)
+```
+
+### Question 19
+
+```{r q19, echo=FALSE}
+question(
+  "What does the expression df[ , 2] do to a two-dimensional data frame?",
+  answer("Extracts the entire second column.", correct = TRUE),
+  answer("Extracts the entire second row."),
+  answer("Extracts the element at row 2, column 2."),
+  answer("Deletes the second column."),
+  allow_retry = TRUE
+)
+```
+
+### Question 20
+
+```{r q20, echo=FALSE}
+question(
+  "How do you merge two data frames 'df1' and 'df2' by a shared column named 'ID' in base R?",
+  answer("merge(df1, df2, by = 'ID')", correct = TRUE),
+  answer("join(df1, df2, on = 'ID')"),
+  answer("combine(df1, df2, columns = 'ID')"),
+  answer("rbind(df1, df2, by = 'ID')"),
+  allow_retry = TRUE
+)
+```
+
+## Section C
+
+### Question 21
+
+```{r q21, echo=FALSE}
+question(
+  "What object type does R use to represent the execution context and scope of a function?",
+  answer("Environment", correct = TRUE),
+  answer("Closure"),
+  answer("Promise"),
+  answer("Expression"),
+  allow_retry = TRUE
+)
+```
+
+### Question 22
+
+```{r q22, echo=FALSE}
+question(
+  "What is 'lazy evaluation' in R?",
+  answer("Function arguments are evaluated only when they are actually needed within the function execution.", correct = TRUE),
+  answer("R delays memory allocation for variables until the script is fully written."),
+  answer("Packages are not loaded into memory until a function within them is called."),
+  answer("Garbage collection is deferred until R runs completely out of memory."),
+  allow_retry = TRUE
+)
+```
+
+### Question 23
+
+```{r q23, echo=FALSE}
+question(
+  "Which object-oriented programming system in R relies on generic functions dispatching methods based on the class of the first argument via a single naming convention (e.g., print.lm)?",
+  answer("S3", correct = TRUE),
+  answer("S4"),
+  answer("Reference Classes (RC)"),
+  answer("R6"),
+  allow_retry = TRUE
+)
+```
+
+### Question 24
+
+```{r q24, echo=FALSE}
+question(
+  "How do S4 methods differ primary from S3 methods?",
+  answer("S4 methods use formal class definitions and multiple dispatch, managed by explicit validation.", correct = TRUE),
+  answer("S4 methods are purely functional and do not support inheritance."),
+  answer("S4 uses reference semantics to modify objects in-place without copying."),
+  answer("S4 is a wrapper around C++ classes and cannot be built using base R features."),
+  allow_retry = TRUE
+)
+```
+
+### Question 25
+
+```{r q25, echo=FALSE}
+question(
+  "What package is commonly used in R to write high-performance code loops in C++ and integrate them seamlessly?",
+  answer("Rcpp", correct = TRUE),
+  answer("inline"),
+  answer("reticulate"),
+  answer("Cbind"),
+  allow_retry = TRUE
+)
+```
+
+### Question 26
+
+```{r q26, echo=FALSE}
+question(
+  "What is a 'promise' in the context of R's internal mechanics?",
+  answer("An expression object used to implement lazy evaluation containing the expression, environment, and value.", correct = TRUE),
+  answer("An asynchronous programming construct similar to JavaScript Promises."),
+  answer("A guarantee that a data frame column will not change data types."),
+  answer("A modern object type used exclusively in the rlang tidy evaluation pipeline."),
+  allow_retry = TRUE
+)
+```
+
+### Question 27
+
+```{r q27, echo=FALSE}
+question(
+  "In tidy evaluation (rlang), what does the injection/unquoting operator !! (bang-bang) do?",
+  answer("It evaluates an expression immediately inside a quoted context.", correct = TRUE),
+  answer("It converts a character string directly into a formula object."),
+  answer("It acts as a logical NOT operator twice, casting a value to boolean."),
+  answer("It forces a parallel loop to synchronize threads."),
+  allow_retry = TRUE
+)
+```
+
+### Question 28
+
+```{r q28, echo=FALSE}
+question(
+  "Which function allows you to directly manipulate or capture the unevaluated language expression passed into a function argument?",
+  answer("substitute()", correct = TRUE),
+  answer("eval()"),
+  answer("quote()"),
+  answer("parse()"),
+  allow_retry = TRUE
+)
+```
+
+### Question 29
+
+```{r q29, echo=FALSE}
+question(
+  "What OO framework in R uses encapsulated, mutable objects with reference semantics instead of standard functional copy-on-modify semantics?",
+  answer("R6", correct = TRUE),
+  answer("S3"),
+  answer("S4"),
+  answer("vctrs"),
+  allow_retry = TRUE
+)
+```
+
+### Question 30
+
+```{r q30, echo=FALSE}
+question(
+  "Which base function can you use to force immediate garbage collection and free up memory tracking inside an active R session?",
+  answer("gc()", correct = TRUE),
+  answer("rm()"),
+  answer("clear()"),
+  answer("mem_clean()"),
+  allow_retry = TRUE
+)
+```
+
+THE END!
